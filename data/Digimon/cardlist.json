@@ -16874,7 +16874,7 @@
                 "price_30_day_avg": 0.14
             },
             "Black-Memory-Boost-P-039-V1": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.23,
                 "price_trend": 1.1,
                 "price_30_day_avg": 1.01
@@ -16892,7 +16892,7 @@
                 "price_30_day_avg": 0.51
             },
             "Blue-Memory-Boost-P-036-V1": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.1,
                 "price_trend": 0.6,
                 "price_30_day_avg": 0.52
@@ -17156,7 +17156,7 @@
                 "price_30_day_avg": 0.19
             },
             "Green-Memory-Boost-P-038-V1": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.33,
                 "price_trend": 0.97,
                 "price_30_day_avg": 1.1
@@ -17522,7 +17522,7 @@
                 "price_30_day_avg": 0.19
             },
             "Purple-Memory-Boost-P-040-V1": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.2,
                 "price_trend": 0.53,
                 "price_30_day_avg": 0.74
@@ -17540,7 +17540,7 @@
                 "price_30_day_avg": 32.35
             },
             "Red-Memory-Boost-P-035-V1": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.19,
                 "price_trend": 0.54,
                 "price_30_day_avg": 0.59
@@ -17816,7 +17816,7 @@
                 "price_30_day_avg": 11.44
             },
             "Yellow-Memory-Boost-P-037-V1": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.02,
                 "price_trend": 0.21,
                 "price_30_day_avg": 0.24
@@ -22350,7 +22350,7 @@
                 "price_30_day_avg": 0.55
             },
             "Davis-Motomiya-BT3-093": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 2.75,
                 "price_trend": 4.32,
                 "price_30_day_avg": 5.71
@@ -22416,13 +22416,13 @@
                 "price_30_day_avg": 0.15
             },
             "Izzy-Izumi-BT4-096": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.09,
                 "price_trend": 0.62,
                 "price_30_day_avg": 0.67
             },
             "Ken-Ichijoji-BT3-094": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.05,
                 "price_trend": 0.25,
                 "price_30_day_avg": 0.28
@@ -22434,7 +22434,7 @@
                 "price_30_day_avg": 2.1
             },
             "Matt-Ishida-ST6-14": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.02,
                 "price_trend": 0.27,
                 "price_30_day_avg": 0.27
@@ -22476,13 +22476,13 @@
                 "price_30_day_avg": 0.22
             },
             "TK-Takaishi-ST3-12": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.02,
                 "price_trend": 0.03,
                 "price_30_day_avg": 0.17
             },
             "Tai-Kamiya-ST1-12": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.02,
                 "price_trend": 0.05,
                 "price_30_day_avg": 0.1
@@ -28863,97 +28863,97 @@
         },
         "Starter-Deck-Gallantmon": {
             "Agumon-ST7-02-C": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.02,
                 "price_trend": 0.05,
                 "price_30_day_avg": 0.1
             },
             "Atomic-Blaster-ST7-12-C": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.06,
                 "price_trend": 0.15,
                 "price_30_day_avg": 0.1
             },
             "Biyomon-ST7-04-C": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.05,
                 "price_trend": 0.03,
                 "price_30_day_avg": 0.05
             },
             "DarkTyrannomon-BT1-019-AA": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.02,
                 "price_trend": 0.05,
                 "price_30_day_avg": 0.05
             },
             "Gaia-Force-ST1-16-AA": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.02,
                 "price_trend": 0.1,
                 "price_30_day_avg": 0.11
             },
             "Gallantmon-ST7-09-SR": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.02,
                 "price_trend": 0.21,
                 "price_30_day_avg": 0.23
             },
             "GeoGreymon-ST7-06-U": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.02,
                 "price_trend": 0.17,
                 "price_30_day_avg": 0.12
             },
             "Gigimon-ST7-01-U": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.02,
                 "price_trend": 0.03,
                 "price_30_day_avg": 0.08
             },
             "Groundramon-BT1-020-AA": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.02,
                 "price_trend": 0.1,
                 "price_30_day_avg": 0.08
             },
             "Growlmon-ST7-05-R": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.1,
                 "price_trend": 0.37,
                 "price_30_day_avg": 0.51
             },
             "Guilmon-ST7-03-SR": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.02,
                 "price_trend": 0.19,
                 "price_30_day_avg": 0.27
             },
             "Lightning-Joust-ST7-11-U": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.12,
                 "price_trend": 0.19,
                 "price_30_day_avg": 0.09
             },
             "Monodramon-BT1-009-AA": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.02,
                 "price_trend": 0.06,
                 "price_30_day_avg": 0.05
             },
             "RizeGreymon-ST7-07-U": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.04,
                 "price_trend": 0.05,
                 "price_30_day_avg": 0.04
             },
             "ShineGreymon-ST7-10-R": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.05,
                 "price_trend": 0.06,
                 "price_30_day_avg": 0.05
             },
             "WarGrowlmon-ST7-08-R": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.02,
                 "price_trend": 0.08,
                 "price_30_day_avg": 0.08
@@ -28961,97 +28961,97 @@
         },
         "Starter-Deck-Giga-Green": {
             "Electro-Shocker-ST4-16-U": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.14,
                 "price_trend": 0.21,
                 "price_30_day_avg": 0.17
             },
             "Floramon-ST4-02-C": {
-                "quantity": 0,
+                "quantity": 8,
                 "price_from": 0.05,
                 "price_trend": 0.05,
                 "price_30_day_avg": 0.05
             },
             "HerculesKabuterimon-ST4-13-SR": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.02,
                 "price_trend": 0.11,
                 "price_30_day_avg": 0.11
             },
             "Izzy-Izumi-ST4-14-R": {
-                "quantity": 0,
+                "quantity": 8,
                 "price_from": 0.12,
                 "price_trend": 0.21,
                 "price_30_day_avg": 0.11
             },
             "Kabuterimon-ST4-08-U": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.08,
                 "price_trend": 0.64,
                 "price_30_day_avg": 0.63
             },
             "Kunemon-ST4-05-C": {
-                "quantity": 0,
+                "quantity": 8,
                 "price_from": 0.05,
                 "price_trend": 0.05,
                 "price_30_day_avg": 0.06
             },
             "Kuwagamon-ST4-07-C": {
-                "quantity": 0,
+                "quantity": 8,
                 "price_from": 0.06,
                 "price_trend": 0.04,
                 "price_30_day_avg": 0.05
             },
             "Lillymon-ST4-10-U": {
-                "quantity": 0,
+                "quantity": 8,
                 "price_from": 0.02,
                 "price_trend": 0.06,
                 "price_30_day_avg": 0.1
             },
             "MegaKabuterimon-ST4-11-R": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.34,
                 "price_trend": 0.35,
                 "price_30_day_avg": 0.31
             },
             "Motimon-ST4-01-U": {
-                "quantity": 0,
+                "quantity": 8,
                 "price_from": 0.02,
                 "price_trend": 0.07,
                 "price_30_day_avg": 0.07
             },
             "Needle-Spray-ST4-15-C": {
-                "quantity": 0,
+                "quantity": 8,
                 "price_from": 0.13,
                 "price_trend": 0.16,
                 "price_30_day_avg": 0.2
             },
             "Okuwamon-ST4-09-C": {
-                "quantity": 0,
+                "quantity": 8,
                 "price_from": 0.06,
                 "price_trend": 0.04,
                 "price_30_day_avg": 0.09
             },
             "Palmon-ST4-04": {
-                "quantity": 0,
+                "quantity": 8,
                 "price_from": 0.02,
                 "price_trend": 0.04,
                 "price_30_day_avg": 0.09
             },
             "Rosemon-ST4-12-R": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.11,
                 "price_trend": 0.11,
                 "price_30_day_avg": 0.1
             },
             "Tentomon-ST4-03-U": {
-                "quantity": 0,
+                "quantity": 8,
                 "price_from": 0.02,
                 "price_trend": 0.08,
                 "price_30_day_avg": 0.1
             },
             "Togemon-ST4-06-C": {
-                "quantity": 0,
+                "quantity": 8,
                 "price_from": 0.06,
                 "price_trend": 0.07,
                 "price_30_day_avg": 0.07
@@ -29060,97 +29060,97 @@
         "Starter-Deck-Guardian-Vortex": {},
         "Starter-Deck-Heavens-Yellow": {
             "Angemon-ST3-05": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.02,
                 "price_trend": 0.12,
                 "price_30_day_avg": 0.12
             },
             "Angewomon-ST3-09": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.02,
                 "price_trend": 0.2,
                 "price_30_day_avg": 0.15
             },
             "Gatomon-ST3-06": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.07,
                 "price_trend": 0.06,
                 "price_30_day_avg": 0.06
             },
             "Heavens-Charm-ST3-14": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.02,
                 "price_trend": 0.1,
                 "price_30_day_avg": 0.1
             },
             "Heavens-Gate-ST3-13": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.02,
                 "price_trend": 0.07,
                 "price_30_day_avg": 0.06
             },
             "Holy-Flame-ST3-15": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.02,
                 "price_trend": 0.02,
                 "price_30_day_avg": 0.46
             },
             "MagnaAngemon-ST3-08": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.02,
                 "price_trend": 0.1,
                 "price_30_day_avg": 0.07
             },
             "Magnadramon-ST3-10": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.1,
                 "price_trend": 0.09,
                 "price_30_day_avg": 0.09
             },
             "Patamon-ST3-04": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.02,
                 "price_trend": 0.03,
                 "price_30_day_avg": 0.21
             },
             "Salamon-ST3-02": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.02,
                 "price_trend": 0.06,
                 "price_30_day_avg": 0.07
             },
             "Seraphimon-ST3-11": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.28,
                 "price_trend": 0.15,
                 "price_30_day_avg": 0.24
             },
             "Seven-Heavens-ST3-16": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.1,
                 "price_trend": 0.12,
                 "price_30_day_avg": 0.05
             },
             "TK-Takaishi-ST3-12": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.02,
                 "price_trend": 0.07,
                 "price_30_day_avg": 0.08
             },
             "Tapirmon-ST3-03": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.05,
                 "price_trend": 0.04,
                 "price_30_day_avg": 0.04
             },
             "Tokomon-ST3-01": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.02,
                 "price_trend": 0.06,
                 "price_30_day_avg": 0.06
             },
             "Unimon-ST3-07": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.02,
                 "price_trend": 0.06,
                 "price_30_day_avg": 0.05
@@ -29158,97 +29158,97 @@
         },
         "Starter-Deck-Jesmon": {
             "Aus-Generics-ST12-14": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.06,
                 "price_trend": 0.06,
                 "price_30_day_avg": 0.06
             },
             "BaoHuckmon-ST12-06": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.06,
                 "price_trend": 0.07,
                 "price_30_day_avg": 0.07
             },
             "Candlemon-ST12-02": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.04,
                 "price_trend": 0.05,
                 "price_30_day_avg": 0.05
             },
             "From-Master-to-Disciple-ST12-15": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.99,
                 "price_trend": 1.33,
                 "price_30_day_avg": 1.16
             },
             "Gankoomon-ST12-11": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.21,
                 "price_trend": 0.15,
                 "price_30_day_avg": 0.22
             },
             "Gurimon-ST12-01": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.05,
                 "price_trend": 0.11,
                 "price_30_day_avg": 0.15
             },
             "Huckmon-ST12-04": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.05,
                 "price_trend": 0.11,
                 "price_30_day_avg": 0.06
             },
             "Jesmon-ST12-10": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.71,
                 "price_trend": 0.85,
                 "price_30_day_avg": 0.82
             },
             "Meramon-ST12-05": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.09,
                 "price_trend": 0.09,
                 "price_30_day_avg": 0.13
             },
             "Quake-Blast-Fire-Father-ST12-16": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.06,
                 "price_trend": 0.12,
                 "price_30_day_avg": 0.06
             },
             "SaviorHuckmon-ST12-08": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.05,
                 "price_trend": 0.08,
                 "price_30_day_avg": 0.06
             },
             "Sistermon-Blanc-ST12-12": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.25,
                 "price_trend": 2.7,
                 "price_30_day_avg": 2.52
             },
             "Sistermon-Ciel-ST12-13": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.02,
                 "price_trend": 1.31,
                 "price_30_day_avg": 0.3
             },
             "SkullMeramon-ST12-07": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.04,
                 "price_trend": 0.05,
                 "price_30_day_avg": 0.05
             },
             "Solarmon-ST12-03": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.02,
                 "price_trend": 0.33,
                 "price_30_day_avg": 0.3
             },
             "Volcanomon-ST12-09": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.14,
                 "price_trend": 0.19,
                 "price_30_day_avg": 0.14
@@ -29354,97 +29354,97 @@
         },
         "Starter-Deck-Parallel-World-Tactician": {
             "Angewomon-ST10-05": {
-                "quantity": 0,
+                "quantity": 8,
                 "price_from": 0.02,
                 "price_trend": 0.09,
                 "price_30_day_avg": 0.1
             },
             "Bastemon-ST10-11": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.24,
                 "price_trend": 0.13,
                 "price_30_day_avg": 0.04
             },
             "Chaos-Degradation-ST10-14": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 1.0,
                 "price_trend": 2.41,
                 "price_30_day_avg": 2.41
             },
             "Darkness-Wave-ST10-15": {
-                "quantity": 0,
+                "quantity": 8,
                 "price_from": 0.1,
                 "price_trend": 0.14,
                 "price_30_day_avg": 0.1
             },
             "Gatomon-ST10-04": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.4,
                 "price_trend": 1.25,
                 "price_30_day_avg": 1.43
             },
             "Ghostmon-ST10-07": {
-                "quantity": 0,
+                "quantity": 8,
                 "price_from": 0.05,
                 "price_trend": 0.04,
                 "price_30_day_avg": 0.04
             },
             "Junomon-ST10-13": {
-                "quantity": 0,
+                "quantity": 8,
                 "price_from": 0.05,
                 "price_trend": 0.08,
                 "price_30_day_avg": 0.04
             },
             "LadyDevimon-ST10-12": {
-                "quantity": 0,
+                "quantity": 8,
                 "price_from": 0.02,
                 "price_trend": 0.08,
                 "price_30_day_avg": 0.15
             },
             "Lopmon-ST10-03": {
-                "quantity": 0,
+                "quantity": 8,
                 "price_from": 0.05,
                 "price_trend": 0.07,
                 "price_30_day_avg": 0.08
             },
             "Mastemon-ST10-06": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.2,
                 "price_trend": 0.8,
                 "price_30_day_avg": 0.77
             },
             "Night-Raid-BT2-108": {
-                "quantity": 0,
+                "quantity": 8,
                 "price_from": 0.02,
                 "price_trend": 0.1,
                 "price_30_day_avg": 0.06
             },
             "Nyaromon-ST10-01": {
-                "quantity": 0,
+                "quantity": 8,
                 "price_from": 0.02,
                 "price_trend": 0.09,
                 "price_30_day_avg": 0.09
             },
             "Salamon-ST10-02": {
-                "quantity": 0,
+                "quantity": 8,
                 "price_from": 0.03,
                 "price_trend": 0.11,
                 "price_30_day_avg": 0.06
             },
             "Tsukaimon-ST10-08": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.14,
                 "price_trend": 0.16,
                 "price_30_day_avg": 0.17
             },
             "Witchmon-ST10-09": {
-                "quantity": 0,
+                "quantity": 8,
                 "price_from": 0.13,
                 "price_trend": 0.13,
                 "price_30_day_avg": 0.09
             },
             "Wizardmon-ST10-10": {
-                "quantity": 0,
+                "quantity": 8,
                 "price_from": 0.06,
                 "price_trend": 0.06,
                 "price_30_day_avg": 0.04
@@ -29452,97 +29452,97 @@
         },
         "Starter-Deck-RagnaLoardmon": {
             "BryweLudramon-ST13-14": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.15,
                 "price_trend": 0.12,
                 "price_30_day_avg": 0.1
             },
             "Chikurimon-ST13-08": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.58,
                 "price_trend": 0.52,
                 "price_30_day_avg": 0.61
             },
             "Direct-Smasher-ST13-15": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.07,
                 "price_trend": 0.14,
                 "price_30_day_avg": 0.11
             },
             "Duramon-ST13-04": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.19,
                 "price_trend": 0.22,
                 "price_30_day_avg": 0.16
             },
             "Durandamon-ST13-05": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.47,
                 "price_trend": 0.46,
                 "price_30_day_avg": 0.43
             },
             "Gladimon-ST13-10": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.04,
                 "price_trend": 0.07,
                 "price_30_day_avg": 0.06
             },
             "Knightmon-ST13-12": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.05,
                 "price_trend": 0.1,
                 "price_30_day_avg": 0.04
             },
             "Kotemon-ST13-07": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.04,
                 "price_trend": 0.06,
                 "price_30_day_avg": 0.05
             },
             "Legend-Arms-Alliance-ST13-16": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.02,
                 "price_trend": 0.14,
                 "price_30_day_avg": 0.1
             },
             "Ludomon-ST13-09": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.07,
                 "price_trend": 0.08,
                 "price_30_day_avg": 0.08
             },
             "RagnaLoardmon-ST13-06": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 1.28,
                 "price_trend": 1.93,
                 "price_30_day_avg": 1.44
             },
             "RaijiLudomon-ST13-13": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.05,
                 "price_trend": 0.07,
                 "price_30_day_avg": 0.05
             },
             "Sakuttomon-ST13-01": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.06,
                 "price_trend": 0.07,
                 "price_30_day_avg": 0.08
             },
             "TiaLudomon-ST13-11": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.11,
                 "price_trend": 0.1,
                 "price_30_day_avg": 0.09
             },
             "ZubaEagermon-ST13-03": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.05,
                 "price_trend": 0.07,
                 "price_30_day_avg": 0.03
             },
             "Zubamon-ST13-02": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.09,
                 "price_trend": 0.1,
                 "price_30_day_avg": 0.07
@@ -29550,97 +29550,97 @@
         },
         "Starter-Deck-UlforceVeedramon": {
             "AeroVeedramon-ST8-08-R": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.14,
                 "price_trend": 0.13,
                 "price_30_day_avg": 0.11
             },
             "Coredramon-ST8-06-U": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.02,
                 "price_trend": 0.08,
                 "price_30_day_avg": 0.14
             },
             "DemiVeemon-ST8-01-U": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.02,
                 "price_trend": 0.12,
                 "price_30_day_avg": 0.08
             },
             "Dracomon-ST8-03-C": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.02,
                 "price_trend": 0.1,
                 "price_30_day_avg": 0.11
             },
             "Elecmon-BT1-028-AA": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.02,
                 "price_trend": 0.06,
                 "price_30_day_avg": 0.05
             },
             "Gabumon-ST8-02-C": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.06,
                 "price_trend": 0.07,
                 "price_30_day_avg": 0.05
             },
             "Gorillamon-BT1-037-AA": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.02,
                 "price_trend": 0.07,
                 "price_30_day_avg": 0.06
             },
             "Hammer-Spark-ST2-13-AA": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.1,
                 "price_trend": 0.69,
                 "price_30_day_avg": 0.66
             },
             "Monzaemon-BT1-038-AA": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.02,
                 "price_trend": 0.04,
                 "price_30_day_avg": 0.11
             },
             "Slayerdramon-ST8-09-R": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.06,
                 "price_trend": 0.05,
                 "price_30_day_avg": 0.06
             },
             "UlforceVeedramon-ST8-10-SR": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.16,
                 "price_trend": 0.16,
                 "price_30_day_avg": 0.11
             },
             "V-Wing-Blade-ST8-12-C": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.04,
                 "price_trend": 0.08,
                 "price_30_day_avg": 0.04
             },
             "Veedramon-ST8-05-R": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.24,
                 "price_trend": 0.18,
                 "price_30_day_avg": 0.11
             },
             "Veemon-ST8-04-SR": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.02,
                 "price_trend": 0.3,
                 "price_30_day_avg": 0.22
             },
             "Victory-Sword-ST8-11-U": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.04,
                 "price_trend": 0.05,
                 "price_30_day_avg": 0.05
             },
             "Wingdramon-ST8-07-U": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.05,
                 "price_trend": 0.04,
                 "price_30_day_avg": 0.06
@@ -29648,97 +29648,97 @@
         },
         "Starter-Deck-Ultimate-Ancient-Dragon": {
             "Betamon-ST9-03": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.04,
                 "price_trend": 0.03,
                 "price_30_day_avg": 0.05
             },
             "Dinobeemon-ST9-11": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.04,
                 "price_trend": 0.08,
                 "price_30_day_avg": 0.05
             },
             "ExVeemon-ST9-04": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.02,
                 "price_trend": 0.05,
                 "price_30_day_avg": 0.08
             },
             "Flower-Cannon-BT1-110": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.02,
                 "price_trend": 0.05,
                 "price_30_day_avg": 0.07
             },
             "GranKuwagamon-ST9-13": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.12,
                 "price_trend": 0.1,
                 "price_30_day_avg": 0.07
             },
             "Hell-Masquerade-ST9-15": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.05,
                 "price_trend": 0.06,
                 "price_30_day_avg": 0.06
             },
             "Imperialdramon-Dragon-Mode-ST9-06": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.02,
                 "price_trend": 0.32,
                 "price_30_day_avg": 0.31
             },
             "JewelBeemon-ST9-12": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.08,
                 "price_trend": 0.03,
                 "price_30_day_avg": 0.02
             },
             "KoKabuterimon-ST9-07": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.02,
                 "price_trend": 0.05,
                 "price_30_day_avg": 0.03
             },
             "Megadeath-ST9-14": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.73,
                 "price_trend": 1.22,
                 "price_30_day_avg": 1.26
             },
             "Minomon-ST9-01": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.02,
                 "price_trend": 0.08,
                 "price_30_day_avg": 0.1
             },
             "Paildramon-ST9-05": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 1.4,
                 "price_trend": 4.11,
                 "price_30_day_avg": 4.83
             },
             "Snimon-ST9-10": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.1,
                 "price_trend": 0.1,
                 "price_30_day_avg": 0.08
             },
             "Stingmon-ST9-09": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.1,
                 "price_trend": 0.1,
                 "price_30_day_avg": 0.11
             },
             "Veemon-ST9-02": {
-                "quantity": 0,
+                "quantity": 2,
                 "price_from": 0.02,
                 "price_trend": 0.09,
                 "price_30_day_avg": 0.19
             },
             "Wormmon-ST9-08": {
-                "quantity": 0,
+                "quantity": 4,
                 "price_from": 0.03,
                 "price_trend": 0.05,
                 "price_30_day_avg": 0.03
