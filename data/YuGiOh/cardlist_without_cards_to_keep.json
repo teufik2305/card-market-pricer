@@ -24434,7 +24434,7 @@
                 "price_30_day_avg": 0.93
             },
             "Malefic-Rainbow-Dragon": {
-                "quantity": 1,
+                "quantity": 0,
                 "price_from": 0.2,
                 "price_trend": 2.14,
                 "price_30_day_avg": 2.06
@@ -44607,49 +44607,49 @@
                 "price_30_day_avg": 253.32
             },
             "Advanced-Crystal-Beast-Amber-Mammoth": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.38,
                 "price_30_day_avg": 0.34
             },
             "Advanced-Crystal-Beast-Amethyst-Cat": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.03,
                 "price_trend": 0.53,
                 "price_30_day_avg": 0.45
             },
             "Advanced-Crystal-Beast-Cobalt-Eagle": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.1,
                 "price_trend": 0.55,
                 "price_30_day_avg": 0.48
             },
             "Advanced-Crystal-Beast-Emerald-Tortoise": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.03,
                 "price_trend": 0.57,
                 "price_30_day_avg": 0.41
             },
             "Advanced-Crystal-Beast-Ruby-Carbuncle": {
-                "quantity": 3,
+                "quantity": 1,
                 "price_from": 0.02,
                 "price_trend": 0.56,
                 "price_30_day_avg": 0.5
             },
             "Advanced-Crystal-Beast-Sapphire-Pegasus": {
-                "quantity": 3,
+                "quantity": 1,
                 "price_from": 0.1,
                 "price_trend": 0.43,
                 "price_30_day_avg": 0.9
             },
             "Advanced-Crystal-Beast-Topaz-Tiger": {
-                "quantity": 3,
+                "quantity": 1,
                 "price_from": 0.02,
                 "price_trend": 0.54,
                 "price_30_day_avg": 0.42
             },
             "Advanced-Dark": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.13,
                 "price_30_day_avg": 0.08
@@ -44787,43 +44787,43 @@
                 "price_30_day_avg": 17.03
             },
             "Crystal-Beast-Amber-Mammoth": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.2,
                 "price_30_day_avg": 0.15
             },
             "Crystal-Beast-Amethyst-Cat": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.22,
                 "price_30_day_avg": 0.2
             },
             "Crystal-Beast-Cobalt-Eagle": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.18,
                 "price_30_day_avg": 0.19
             },
             "Crystal-Beast-Emerald-Tortoise": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.19,
                 "price_30_day_avg": 0.19
             },
             "Crystal-Beast-Ruby-Carbuncle": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.23,
                 "price_30_day_avg": 0.2
             },
             "Crystal-Beast-Sapphire-Pegasus": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.27,
                 "price_30_day_avg": 0.2
             },
             "Crystal-Beast-Topaz-Tiger": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.2,
                 "price_30_day_avg": 0.19
@@ -128443,7 +128443,7 @@
                 "price_30_day_avg": 0.0
             },
             "Last-Resort": {
-                "quantity": 1,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.11,
                 "price_30_day_avg": 0.08
@@ -198544,19 +198544,19 @@
                 "price_30_day_avg": 0.09
             },
             "Crystal-Bond": {
-                "quantity": 1,
+                "quantity": 0,
                 "price_from": 0.25,
                 "price_trend": 1.48,
                 "price_30_day_avg": 1.72
             },
             "Crystal-Bond-V2-Ultra-Rare": {
-                "quantity": 1,
+                "quantity": 0,
                 "price_from": 0.37,
                 "price_trend": 0.43,
                 "price_30_day_avg": 1.7
             },
             "Crystal-Bond-V3-Ultra-Rare": {
-                "quantity": 1,
+                "quantity": 0,
                 "price_from": 0.48,
                 "price_trend": 1.44,
                 "price_30_day_avg": 2.18
@@ -198832,19 +198832,19 @@
                 "price_30_day_avg": 0.12
             },
             "Rainbow-Bridge": {
-                "quantity": 1,
+                "quantity": 0,
                 "price_from": 0.44,
                 "price_trend": 1.18,
                 "price_30_day_avg": 1.13
             },
             "Rainbow-Bridge-V2-Ultra-Rare": {
-                "quantity": 1,
+                "quantity": 0,
                 "price_from": 0.2,
                 "price_trend": 2.09,
                 "price_30_day_avg": 1.46
             },
             "Rainbow-Bridge-V3-Ultra-Rare": {
-                "quantity": 1,
+                "quantity": 0,
                 "price_from": 0.41,
                 "price_trend": 1.03,
                 "price_30_day_avg": 1.62
@@ -198868,19 +198868,19 @@
                 "price_30_day_avg": 0.17
             },
             "Rainbow-Overdragon": {
-                "quantity": 1,
+                "quantity": 0,
                 "price_from": 0.19,
                 "price_trend": 1.08,
                 "price_30_day_avg": 1.23
             },
             "Rainbow-Overdragon-V2-Ultra-Rare": {
-                "quantity": 1,
+                "quantity": 0,
                 "price_from": 0.25,
                 "price_trend": 1.13,
                 "price_30_day_avg": 1.09
             },
             "Rainbow-Overdragon-V3-Ultra-Rare": {
-                "quantity": 1,
+                "quantity": 0,
                 "price_from": 0.25,
                 "price_trend": 1.26,
                 "price_30_day_avg": 1.52
@@ -199198,7 +199198,7 @@
                 "price_30_day_avg": 0.17
             },
             "Ultimate-Crystal-Magic": {
-                "quantity": 1,
+                "quantity": 0,
                 "price_from": 0.15,
                 "price_trend": 0.69,
                 "price_30_day_avg": 0.85
@@ -199210,7 +199210,7 @@
                 "price_30_day_avg": 1.38
             },
             "Ultimate-Crystal-Magic-V3-Ultra-Rare": {
-                "quantity": 2,
+                "quantity": 0,
                 "price_from": 0.19,
                 "price_trend": 0.78,
                 "price_30_day_avg": 0.87
@@ -257109,7 +257109,7 @@
                 "price_30_day_avg": 0.0
             },
             "Rainbow-Neos": {
-                "quantity": 1,
+                "quantity": 0,
                 "price_from": 0.09,
                 "price_trend": 0.45,
                 "price_30_day_avg": 0.64
@@ -281575,7 +281575,7 @@
                 "price_30_day_avg": 0.12
             },
             "Rainbow-Dragon-V2-Secret-Rare": {
-                "quantity": 1,
+                "quantity": 0,
                 "price_from": 0.3,
                 "price_trend": 0.97,
                 "price_30_day_avg": 0.86
@@ -324353,13 +324353,13 @@
         },
         "Structure-Deck-Legend-of-the-Crystal-Beasts": {
             "Advanced-Dark": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.07,
                 "price_30_day_avg": 0.07
             },
             "Ancient-City-Rainbow-Ruins": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.1,
                 "price_30_day_avg": 0.08
@@ -324371,7 +324371,7 @@
                 "price_30_day_avg": 4.58
             },
             "Awakening-of-the-Crystal-Ultimates": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.14,
                 "price_30_day_avg": 0.15
@@ -324389,151 +324389,151 @@
                 "price_30_day_avg": 0.18
             },
             "Counter-Gem": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.08,
                 "price_30_day_avg": 0.06
             },
             "Crystal-Abundance": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.09,
                 "price_30_day_avg": 0.07
             },
             "Crystal-Aegis": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.14,
                 "price_30_day_avg": 0.13
             },
             "Crystal-Beacon": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.1,
                 "price_30_day_avg": 0.08
             },
             "Crystal-Beast-Amber-Mammoth": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.03,
                 "price_30_day_avg": 0.06
             },
             "Crystal-Beast-Amethyst-Cat": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.11,
                 "price_30_day_avg": 0.07
             },
             "Crystal-Beast-Cobalt-Eagle": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.12,
                 "price_30_day_avg": 0.06
             },
             "Crystal-Beast-Emerald-Tortoise": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.07,
                 "price_30_day_avg": 0.05
             },
             "Crystal-Beast-Rainbow-Dragon": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.21,
                 "price_30_day_avg": 0.19
             },
             "Crystal-Beast-Ruby-Carbuncle": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.09,
                 "price_30_day_avg": 0.05
             },
             "Crystal-Beast-Sapphire-Pegasus": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.11,
                 "price_30_day_avg": 0.09
             },
             "Crystal-Beast-Token": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.16,
                 "price_30_day_avg": 0.13
             },
             "Crystal-Beast-Topaz-Tiger": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.09,
                 "price_30_day_avg": 0.06
             },
             "Crystal-Blessing": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.09,
                 "price_30_day_avg": 0.07
             },
             "Crystal-Bond": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.33,
                 "price_30_day_avg": 0.3
             },
             "Crystal-Boon": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.18,
                 "price_30_day_avg": 0.15
             },
             "Crystal-Brilliance": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.12,
                 "price_30_day_avg": 0.13
             },
             "Crystal-Conclave": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.13,
                 "price_30_day_avg": 0.09
             },
             "Crystal-Keeper": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.05,
                 "price_30_day_avg": 0.05
             },
             "Crystal-Master": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.03,
                 "price_30_day_avg": 0.07
             },
             "Crystal-Miracle": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.14,
                 "price_30_day_avg": 0.12
             },
             "Crystal-Pair": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.11,
                 "price_30_day_avg": 0.07
             },
             "Crystal-Promise": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.09,
                 "price_30_day_avg": 0.07
             },
             "Crystal-Release": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.06,
                 "price_30_day_avg": 0.08
             },
             "Crystal-Tree": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.08,
                 "price_30_day_avg": 0.07
@@ -324569,13 +324569,13 @@
                 "price_30_day_avg": 0.1
             },
             "Jesse-Anderson-Bonder-with-the-Crystal-Beasts": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.14,
                 "price_30_day_avg": 0.17
             },
             "Jesse-and-Ruby-Unleashing-the-Legend": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.17,
                 "price_30_day_avg": 0.11
@@ -324587,43 +324587,43 @@
                 "price_30_day_avg": 0.18
             },
             "Rainbow-Bridge": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.1,
                 "price_30_day_avg": 0.1
             },
             "Rainbow-Bridge-of-the-Heart": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.25,
                 "price_30_day_avg": 0.3
             },
             "Rainbow-Dark-Dragon": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.11,
                 "price_30_day_avg": 0.07
             },
             "Rainbow-Dragon": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.2,
                 "price_30_day_avg": 0.26
             },
             "Rainbow-Overdragon": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.2,
                 "price_30_day_avg": 0.17
             },
             "Rainbow-Refraction": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.09,
                 "price_30_day_avg": 0.06
             },
             "Rare-Value": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.1,
                 "price_30_day_avg": 0.08
@@ -324635,13 +324635,13 @@
                 "price_30_day_avg": 0.24
             },
             "Ultimate-Crystal-Magic": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.11,
                 "price_30_day_avg": 0.09
             },
             "Ultimate-Crystal-Rainbow-Dragon-Overdrive": {
-                "quantity": 3,
+                "quantity": 0,
                 "price_from": 0.02,
                 "price_trend": 0.27,
                 "price_30_day_avg": 0.24
