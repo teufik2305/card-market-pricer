@@ -215,7 +215,14 @@
         "Time-Thief-Redoer-V1-Super-Rare",
         "Triple-Tactics-Talent-V1-Super-Rare",
         "Triple-Tactics-Talent-V2-Ultra-Rare",
-        "Triple-Tactics-Talent-V3-Secret-Rare"
+        "Triple-Tactics-Talent-V3-Secret-Rare",
+        "Cyber-Angel-Benten-V2-Ultra-Rare",
+        "Dingirsu-the-Orcust-of-the-Evening-Star-V1-Super-Rare",
+        "Dogmatika-Ecclesia-the-Virtuous-V1-Super-Rare",
+        "Egyptian-God-Slime-V2-Ultra-Rare",
+        "Red-Eyes-Flare-Metal-Dragon-V1-Super-Rare",
+        "The-Iris-Swordsoul-V1-Super-Rare",
+        "Wynn-the-Wind-Channeler-V1-Super-Rare"
     ],
     "25th-Anniversary-Tin-Dueling-Heroes-Mega-Pack": [
         "Amazoness-Secret-Arts",
@@ -271,7 +278,8 @@
         "Wollow-Founder-of-the-Drudge-Dragons",
         "Worldsea-Dragon-Zealantis",
         "Yorishiro-of-the-Aqua",
-        "Zombie-Reborn"
+        "Zombie-Reborn",
+        "The-Weather-Painter-Moonbow"
     ],
     "2Player-Starter-Deck-Yuya-Declan": [
         "Smashing-Ground"
@@ -623,7 +631,8 @@
         "World-Legacy-Pawns",
         "World-Legacy-in-Shadow",
         "X-Krawler-Neurogos",
-        "X-Krawler-Synaphysis"
+        "X-Krawler-Synaphysis",
+        "Fire-King-Avatar-Arvata"
     ],
     "Code-of-the-Duelist": [
         "Air-Cracking-Storm",
@@ -896,7 +905,8 @@
         "Torpedo-Takedown",
         "Trias-Hierarchia",
         "Unchained-Twins-Sarama",
-        "Xyz-Revive-Splash"
+        "Xyz-Revive-Splash",
+        "Red-Reign"
     ],
     "Extreme-Force": [
         "Bitrooper",
@@ -1056,7 +1066,8 @@
         "Reinforcement-of-the-Army-V1-Rare",
         "Rescue-Rabbit-V1-Rare",
         "The-Wicked-Avatar",
-        "ZW-Leo-Arms"
+        "ZW-Leo-Arms",
+        "Cloudcastle"
     ],
     "Legacy-of-Destruction": [
         "Ancient-Gear-Commander",
@@ -1263,7 +1274,9 @@
         "Parasite-Paranoid",
         "Pinch-Hopper",
         "Vortex-Trooper",
-        "Worm-Bait"
+        "Worm-Bait",
+        "Ojamassimilation",
+        "Relinquished-Fusion"
     ],
     "Legendary-Duelists-Immortal-Destiny": [
         "Diabound-Kernel",
@@ -1479,7 +1492,9 @@
         "Traptrix-Allomerus",
         "Traptrix-Genlisea",
         "Vampire-Vamp",
-        "Zombyra-the-Dark"
+        "Zombyra-the-Dark",
+        "Stygian-Dirge",
+        "Tribute-Burial"
     ],
     "Magicians-Force": [
         "Metalsilver-Armor"
@@ -1609,10 +1624,17 @@
         "Tricorn-the-Cacophonous-Concert",
         "White-Aura-Porpoise",
         "White-Reincarnation",
-        "XYZ-Force"
+        "XYZ-Force",
+        "Goblin-Biker-Boom-Mach",
+        "Goblin-Biker-Grand-Stampede",
+        "Goblins-Crazy-Beast",
+        "Prayers-of-the-Voiceless-Voice",
+        "Saffira-Dragon-Queen-of-the-Voiceless-Voice-V1-Ultra-Rare",
+        "Sauravis-Dragon-Sage-of-the-Voiceless-Voice"
     ],
     "Phantom-Rage": [
-        "Tri-Brigade-Kerass"
+        "Tri-Brigade-Kerass",
+        "Tri-Brigade-Ferrijit-the-Barren-Blossom"
     ],
     "Pharaohs-Servant-25th-Anniversary-Edition": [
         "Attack-and-Receive",
@@ -1721,7 +1743,9 @@
         "Number-30-Acid-Golem-of-Destruction"
     ],
     "Rise-of-the-Duelist": [
-        "Ancient-Warriors-Oath-Double-Dragon-Lords"
+        "Ancient-Warriors-Oath-Double-Dragon-Lords",
+        "Dogmatika-Punishment",
+        "Shaddoll-Schism"
     ],
     "Rising-Rampage": [
         "Linkmail-Archfiend"
@@ -1973,7 +1997,8 @@
         "Warrior-Lady-of-the-Wasteland",
         "Wild-Fire",
         "Winged-Kuriboh-V1-Common",
-        "Wroughtweiler"
+        "Wroughtweiler",
+        "Cyber-Blader-V2-Secret-Rare"
     ],
     "Spell-Ruler-25th-Anniversary-Edition": [
         "Commencement-Dance",
@@ -2537,7 +2562,8 @@
         "Scapegoat-V1-Rare",
         "Senet-Switch",
         "Trap-Trick-V1-Rare",
-        "Vaylantz-Buster-Baron"
+        "Vaylantz-Buster-Baron",
+        "Malice-Lady-of-Lament"
     ],
     "The-Dark-Side-of-Dimensions-Movie-Pack": [
         "Blade-Garoodia-the-Cubic-Beast-V-3-Secret-Rare",
@@ -2573,5 +2599,8 @@
     ],
     "Wing-Raiders": [
         "Forbidden-Chalice"
+    ],
+    "25th-Anniversary-Tin-Dueling-Heroes": [
+        "Dark-Magician"
     ]
 }

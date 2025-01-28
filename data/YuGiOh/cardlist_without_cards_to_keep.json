@@ -18534,10 +18534,10 @@
                 "price_30_day_avg": 0.06
             },
             "Cyber-Angel-Benten-V2-Ultra-Rare": {
-                "quantity": 0,
+                "quantity": 1,
                 "price_from": 0.02,
-                "price_trend": 0.12,
-                "price_30_day_avg": 0.1
+                "price_trend": 0.1,
+                "price_30_day_avg": 0.08
             },
             "Cyber-Angel-Benten-V3-Secret-Rare": {
                 "quantity": 0,
@@ -18696,10 +18696,10 @@
                 "price_30_day_avg": 2.36
             },
             "Dingirsu-the-Orcust-of-the-Evening-Star-V1-Super-Rare": {
-                "quantity": 0,
+                "quantity": 1,
                 "price_from": 0.02,
-                "price_trend": 0.3,
-                "price_30_day_avg": 0.28
+                "price_trend": 0.29,
+                "price_30_day_avg": 0.26
             },
             "Dingirsu-the-Orcust-of-the-Evening-Star-V2-Ultra-Rare": {
                 "quantity": 0,
@@ -18714,9 +18714,9 @@
                 "price_30_day_avg": 0.54
             },
             "Dogmatika-Ecclesia-the-Virtuous-V1-Super-Rare": {
-                "quantity": 0,
+                "quantity": 1,
                 "price_from": 0.02,
-                "price_trend": 0.12,
+                "price_trend": 0.21,
                 "price_30_day_avg": 0.15
             },
             "Dogmatika-Ecclesia-the-Virtuous-V2-Ultra-Rare": {
@@ -18822,9 +18822,9 @@
                 "price_30_day_avg": 0.51
             },
             "Egyptian-God-Slime-V2-Ultra-Rare": {
-                "quantity": 0,
+                "quantity": 1,
                 "price_from": 0.02,
-                "price_trend": 0.57,
+                "price_trend": 0.36,
                 "price_30_day_avg": 0.57
             },
             "Egyptian-God-Slime-V3-Secret-Rare": {
@@ -19728,10 +19728,10 @@
                 "price_30_day_avg": 4.31
             },
             "Red-Eyes-Flare-Metal-Dragon-V1-Super-Rare": {
-                "quantity": 0,
+                "quantity": 1,
                 "price_from": 0.02,
-                "price_trend": 0.12,
-                "price_30_day_avg": 0.11
+                "price_trend": 0.13,
+                "price_30_day_avg": 0.14
             },
             "Red-Eyes-Flare-Metal-Dragon-V2-Ultra-Rare": {
                 "quantity": 0,
@@ -19884,10 +19884,10 @@
                 "price_30_day_avg": 0.29
             },
             "The-Iris-Swordsoul-V1-Super-Rare": {
-                "quantity": 0,
+                "quantity": 1,
                 "price_from": 0.02,
-                "price_trend": 0.05,
-                "price_30_day_avg": 0.08
+                "price_trend": 0.06,
+                "price_30_day_avg": 0.07
             },
             "The-Iris-Swordsoul-V2-Ultra-Rare": {
                 "quantity": 0,
@@ -20082,9 +20082,9 @@
                 "price_30_day_avg": 8.18
             },
             "Wynn-the-Wind-Channeler-V1-Super-Rare": {
-                "quantity": 0,
+                "quantity": 1,
                 "price_from": 0.02,
-                "price_trend": 0.07,
+                "price_trend": 0.13,
                 "price_30_day_avg": 0.08
             },
             "Wynn-the-Wind-Channeler-V2-Ultra-Rare": {
@@ -21922,10 +21922,10 @@
                 "price_30_day_avg": 3.3
             },
             "Dark-Magician": {
-                "quantity": 0,
-                "price_from": 3.0,
-                "price_trend": 5.73,
-                "price_30_day_avg": 4.62
+                "quantity": 1,
+                "price_from": 4.0,
+                "price_trend": 5.64,
+                "price_30_day_avg": 5.3
             },
             "Decode-Talker": {
                 "quantity": 0,
@@ -23490,10 +23490,10 @@
                 "price_30_day_avg": 0.07
             },
             "The-Weather-Painter-Moonbow": {
-                "quantity": 0,
+                "quantity": 1,
                 "price_from": 0.02,
-                "price_trend": 0.13,
-                "price_30_day_avg": 0.08
+                "price_trend": 0.09,
+                "price_30_day_avg": 0.07
             },
             "The-Zombie-Vampire": {
                 "quantity": 0,
@@ -65777,10 +65777,10 @@
                 "price_30_day_avg": 0.1
             },
             "Fire-King-Avatar-Arvata": {
-                "quantity": 0,
+                "quantity": 1,
                 "price_from": 0.02,
-                "price_trend": 0.62,
-                "price_30_day_avg": 0.57
+                "price_trend": 0.3,
+                "price_30_day_avg": 0.48
             },
             "Fuse-Line": {
                 "quantity": 0,
@@ -140440,10 +140440,10 @@
                 "price_30_day_avg": 0.09
             },
             "Red-Reign": {
-                "quantity": 0,
+                "quantity": 1,
                 "price_from": 0.02,
-                "price_trend": 0.25,
-                "price_30_day_avg": 0.24
+                "price_trend": 0.13,
+                "price_30_day_avg": 0.38
             },
             "Resonator-Command": {
                 "quantity": 1,
@@ -172234,10 +172234,10 @@
                 "price_30_day_avg": 0.32
             },
             "Cloudcastle": {
-                "quantity": 0,
+                "quantity": 1,
                 "price_from": 0.02,
                 "price_trend": 0.06,
-                "price_30_day_avg": 0.08
+                "price_30_day_avg": 0.09
             },
             "Constellar-Ptolemy-M7": {
                 "quantity": 0,
@@ -197096,10 +197096,10 @@
                 "price_30_day_avg": 0.17
             },
             "Ojamassimilation": {
-                "quantity": 0,
+                "quantity": 1,
                 "price_from": 0.02,
-                "price_trend": 0.3,
-                "price_30_day_avg": 0.38
+                "price_trend": 0.23,
+                "price_30_day_avg": 0.29
             },
             "Ojamatch": {
                 "quantity": 0,
@@ -197162,10 +197162,10 @@
                 "price_30_day_avg": 0.2
             },
             "Relinquished-Fusion": {
-                "quantity": 0,
-                "price_from": 0.43,
-                "price_trend": 1.59,
-                "price_30_day_avg": 2.14
+                "quantity": 1,
+                "price_from": 0.69,
+                "price_trend": 1.5,
+                "price_30_day_avg": 2.02
             },
             "Thousand-Eyes-Restrict": {
                 "quantity": 0,
@@ -207909,9 +207909,9 @@
                 "price_30_day_avg": 0.32
             },
             "Stygian-Dirge": {
-                "quantity": 0,
+                "quantity": 1,
                 "price_from": 0.02,
-                "price_trend": 0.28,
+                "price_trend": 0.34,
                 "price_30_day_avg": 0.4
             },
             "Super-Rejuvenation": {
@@ -207957,10 +207957,10 @@
                 "price_30_day_avg": 1.89
             },
             "Tribute-Burial": {
-                "quantity": 0,
-                "price_from": 0.05,
-                "price_trend": 0.31,
-                "price_30_day_avg": 0.3
+                "quantity": 1,
+                "price_from": 0.02,
+                "price_trend": 0.33,
+                "price_30_day_avg": 0.29
             },
             "Ultimate-Offering": {
                 "quantity": 0,
@@ -230634,10 +230634,10 @@
                 "price_30_day_avg": 17.34
             },
             "Goblin-Biker-Boom-Mach": {
-                "quantity": 0,
+                "quantity": 1,
                 "price_from": 0.02,
-                "price_trend": 0.16,
-                "price_30_day_avg": 0.11
+                "price_trend": 0.15,
+                "price_30_day_avg": 0.12
             },
             "Goblin-Biker-Clatter-Sploder": {
                 "quantity": 0,
@@ -230688,10 +230688,10 @@
                 "price_30_day_avg": 5.67
             },
             "Goblin-Biker-Grand-Stampede": {
-                "quantity": 0,
+                "quantity": 1,
                 "price_from": 0.02,
-                "price_trend": 0.15,
-                "price_30_day_avg": 0.1
+                "price_trend": 0.11,
+                "price_30_day_avg": 0.07
             },
             "Goblin-Biker-Mean-Merciless": {
                 "quantity": 0,
@@ -230706,9 +230706,9 @@
                 "price_30_day_avg": 0.05
             },
             "Goblins-Crazy-Beast": {
-                "quantity": 0,
+                "quantity": 1,
                 "price_from": 0.02,
-                "price_trend": 0.11,
+                "price_trend": 0.13,
                 "price_30_day_avg": 0.1
             },
             "Hero-of-the-Ashened-City": {
@@ -230892,9 +230892,9 @@
                 "price_30_day_avg": 0.1
             },
             "Prayers-of-the-Voiceless-Voice": {
-                "quantity": 0,
+                "quantity": 1,
                 "price_from": 0.02,
-                "price_trend": 0.18,
+                "price_trend": 0.14,
                 "price_30_day_avg": 0.12
             },
             "Priestess-of-the-Ashened-City-V1-Ultra-Rare": {
@@ -231018,10 +231018,10 @@
                 "price_30_day_avg": 0.1
             },
             "Saffira-Dragon-Queen-of-the-Voiceless-Voice-V1-Ultra-Rare": {
-                "quantity": 0,
-                "price_from": 1.5,
-                "price_trend": 4.49,
-                "price_30_day_avg": 4.04
+                "quantity": 1,
+                "price_from": 3.42,
+                "price_trend": 7.95,
+                "price_30_day_avg": 7.85
             },
             "Saffira-Dragon-Queen-of-the-Voiceless-Voice-V2-Quarter-Century-Secret-Rare": {
                 "quantity": 0,
@@ -231036,10 +231036,10 @@
                 "price_30_day_avg": 1.44
             },
             "Sauravis-Dragon-Sage-of-the-Voiceless-Voice": {
-                "quantity": 0,
+                "quantity": 1,
                 "price_from": 0.02,
-                "price_trend": 0.27,
-                "price_30_day_avg": 0.23
+                "price_trend": 0.26,
+                "price_30_day_avg": 0.24
             },
             "Skull-Guardian-Protector-of-the-Voiceless-Voice-V1-Ultra-Rare": {
                 "quantity": 0,
@@ -232456,10 +232456,10 @@
                 "price_30_day_avg": 4.9
             },
             "Tri-Brigade-Ferrijit-the-Barren-Blossom": {
-                "quantity": 0,
+                "quantity": 1,
                 "price_from": 1.0,
-                "price_trend": 1.63,
-                "price_30_day_avg": 2.1
+                "price_trend": 2.61,
+                "price_30_day_avg": 2.58
             },
             "Tri-Brigade-Ferrijit-the-Barren-Blossom-V2-Starlight-Rare": {
                 "quantity": 0,
@@ -265341,10 +265341,10 @@
                 "price_30_day_avg": 0.06
             },
             "Dogmatika-Punishment": {
-                "quantity": 0,
+                "quantity": 1,
                 "price_from": 0.02,
-                "price_trend": 0.28,
-                "price_30_day_avg": 0.23
+                "price_trend": 0.17,
+                "price_30_day_avg": 0.26
             },
             "Dogmatika-Theo-the-Iron-Punch": {
                 "quantity": 0,
@@ -265731,10 +265731,10 @@
                 "price_30_day_avg": 0.27
             },
             "Shaddoll-Schism": {
-                "quantity": 0,
-                "price_from": 0.08,
-                "price_trend": 0.4,
-                "price_30_day_avg": 0.69
+                "quantity": 1,
+                "price_from": 0.05,
+                "price_trend": 0.29,
+                "price_30_day_avg": 0.4
             },
             "Soldier-Gaia-The-Fierce-Knight": {
                 "quantity": 0,
@@ -280783,10 +280783,10 @@
                 "price_30_day_avg": 0.11
             },
             "Cyber-Blader-V2-Secret-Rare": {
-                "quantity": 0,
+                "quantity": 1,
                 "price_from": 0.04,
-                "price_trend": 0.19,
-                "price_30_day_avg": 0.18
+                "price_trend": 0.25,
+                "price_30_day_avg": 0.36
             },
             "Cyber-Dragon-V1-Common": {
                 "quantity": 1,
@@ -344108,10 +344108,10 @@
                 "price_30_day_avg": 40.33
             },
             "Malice-Lady-of-Lament": {
-                "quantity": 0,
+                "quantity": 1,
                 "price_from": 0.02,
-                "price_trend": 0.15,
-                "price_30_day_avg": 0.07
+                "price_trend": 0.07,
+                "price_30_day_avg": 0.03
             },
             "Mamonaka-the-Vaylantz-United-V1-Ultra-Rare": {
                 "quantity": 0,
