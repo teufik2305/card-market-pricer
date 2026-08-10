@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}{{ expansion.display_name }} — Cardvault{% endblock %}
+{% block content %}
+<nav class="breadcrumb" aria-label="breadcrumb">
+  <a href="{% url 'expansion-list' game=game.code %}">{{ game.name }} sets</a>
+  <span class="sep">/</span>
+  <span>{{ expansion.display_name }}</span>
+</nav>
+
+<div id="exp-totals"
+     hx-get="{% url 'expansion-totals' game=game.code slug=expansion.slug %}"
+     hx-trigger="qty-changed from:body" hx-swap="innerHTML">
+  {% include "catalog/partials/expansion_totals.html" %}
+</div>
+
+<form class="filter-bar" id="card-filter"
+      hx-get="{% url 'expansion-detail' game=game.code slug=expansion.slug %}"
+      hx-target="#card-panel" hx-push-url="true"
+      hx-trigger="change, input changed delay:300ms">
+      {% comment %}Events bubble from the inputs to this form, so one pair of
+      triggers covers every control. The previous "from:find select" only ever
+      matched the FIRST select — htmx's find returns one element — so the second
+      and later filter dropdowns silently did nothing.{% endcomment %}
+  <input class="grow" type="search" name="q" value="{{ q }}"
+         placeholder="Search within this set…" aria-label="Search within set">
+  <input type="hidden" name="owned" value="0">
+  <label class="check">
+    <input type="checkbox" name="owned" value="1" {% if owned_only %}checked{% endif %}>
+    Owned only
+  </label>
+  <span class="htmx-indicator faint small">searching…</span>
+</form>
+
+<details class="disclosure mb">
+  <summary>Bulk actions — {{ page.paginator.count }} card{{ page.paginator.count|pluralize }} match the filter</summary>
+  <div class="disclosure-body">
+    <div class="bulk-row">
+      <label class="check">Set all to
+        <input type="number" id="bulk-value" name="value" value="1" min="0" max="999"
+               class="num-input" required>
+      </label>
+      <button type="button" class="btn"
+              hx-post="{% url 'bulk-preview' %}"
+              hx-include="#card-filter, #bulk-value"
+              hx-vals='{"game": "{{ game.code }}", "expansion": "{{ expansion.slug }}", "op": "set"}'
+              hx-target="#modal" hx-swap="innerHTML">Set all…</button>
+      {# +1 / zero ignore the number box, so they pass their own value via hx-vals #}
+      <button type="button" class="btn"
+              hx-post="{% url 'bulk-preview' %}"
+              hx-include="#card-filter"
+              hx-vals='{"game": "{{ game.code }}", "expansion": "{{ expansion.slug }}", "op": "inc", "value": "1"}'
+              hx-target="#modal" hx-swap="innerHTML">+1 to all…</button>
+      <button type="button" class="btn btn-danger"
+              hx-post="{% url 'bulk-preview' %}"
+              hx-include="#card-filter"
+              hx-vals='{"game": "{{ game.code }}", "expansion": "{{ expansion.slug }}", "op": "zero", "value": "0"}'
+              hx-target="#modal" hx-swap="innerHTML">Zero all…</button>
+    </div>
+    <p class="hint">
+      Every bulk action shows its exact impact before touching anything, and undoes in one click.
+    </p>
+  </div>
+</details>
+
+<div id="card-panel">
+  {% include "catalog/partials/card_panel.html" %}
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% load money %}
+{% if view == "gallery" %}
+  {% if page %}
+  <div class="gallery">
+    {% for p in page %}{% include "catalog/partials/card_tile.html" %}{% endfor %}
+  </div>
+  {% else %}
+  <div class="empty">
+    <div class="empty-icon" aria-hidden="true">◫</div>
+    <p>No cards match these filters.</p>
+  </div>
+  {% endif %}
+{% else %}
+<div class="table-wrap">
+<table class="qty-table">
+  <thead>
+    <tr>
+      <th colspan="2">Card</th>
+      <th>Set</th>
+      <th class="num">From</th>
+      <th class="num">Trend</th>
+      <th class="num">30d</th>
+      <th class="num qty-col">Qty</th>
+    </tr>
+  </thead>
+  <tbody id="browser-rows">
+    {% include "catalog/partials/browser_rows.html" %}
+  </tbody>
+</table>
+</div>
+{% endif %}
+
+{% if page.has_other_pages %}
+<nav class="pagination">
+  {% if page.has_previous %}
+    <a class="btn btn-sm" href="?{% querystring page=page.previous_page_number %}">‹ Prev</a>
+  {% endif %}
+  <span class="muted small">
+    Page {{ page.number }} of {{ page.paginator.num_pages }} · {{ page.paginator.count }} cards
+  </span>
+  {% if page.has_next %}
+    <a class="btn btn-sm" href="?{% querystring page=page.next_page_number %}">Next ›</a>
+  {% endif %}
+</nav>
+{% endif %}

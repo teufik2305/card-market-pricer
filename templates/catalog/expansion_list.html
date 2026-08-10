@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}{{ game.name }} sets — Cardvault{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div class="titles">
+    <h1>{{ game.name }} sets</h1>
+    <p class="subtitle">Completion and value per expansion. Open one to enter quantities.</p>
+  </div>
+</div>
+
+<form class="filter-bar" hx-get="{% url 'expansion-list' game=game.code %}"
+      hx-target="#expansion-rows" hx-push-url="true"
+      hx-trigger="change, input changed delay:300ms">
+      {% comment %}Events bubble from the inputs to this form, so one pair of
+      triggers covers every control. The previous "from:find select" only ever
+      matched the FIRST select — htmx's find returns one element — so the second
+      and later filter dropdowns silently did nothing.{% endcomment %}
+  <input class="grow" type="search" name="q" value="{{ q }}" placeholder="Search sets…"
+         aria-label="Search sets">
+  <input type="hidden" name="owned" value="0">
+  <label class="check">
+    <input type="checkbox" name="owned" value="1" {% if owned_only %}checked{% endif %}>
+    Owned only
+  </label>
+  <span class="htmx-indicator faint small">searching…</span>
+</form>
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Set</th>
+        <th style="width:22%">Completion</th>
+        <th class="num">Owned / total</th>
+        <th class="num">Owned value</th>
+        <th>Scraped</th>
+      </tr>
+    </thead>
+    <tbody id="expansion-rows">
+      {% include "catalog/partials/expansion_rows.html" %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

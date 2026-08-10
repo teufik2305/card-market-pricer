@@ -1,0 +1,26 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{{ title }} · Cardvault records{% endblock %}
+
+{% block extrastyle %}{{ block.super }}
+<link rel="stylesheet" href="{% static 'admin-theme.css' %}">
+<link rel="icon" href="{% static 'card-placeholder.svg' %}">
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}"><span class="brand-dot"></span> Cardvault <em>records</em></a></h1>
+{% endblock %}
+
+{% block usertools %}
+{% if has_permission %}
+<div id="user-tools">
+  <a class="app-link" href="{% url 'dashboard' %}">← Back to Cardvault</a>
+  {% block welcome-msg %}
+    {{ block.super }}
+  {% endblock %}
+</div>
+{% endif %}
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

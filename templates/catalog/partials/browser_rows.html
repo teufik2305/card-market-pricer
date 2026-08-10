@@ -1,0 +1,36 @@
+{% load money %}
+{% for p in page %}
+<tr class="{% if not p.qty %}dim{% endif %}">
+  <td style="width:44px">
+    <a href="{% url 'card-detail' game=game.code pk=p.pk %}" style="display:block;width:34px">
+      {% if p.piece_id %}
+        <img class="thumb" src="{% url 'card-art' piece_id=p.piece_id size='small' %}"
+             alt="" loading="lazy" decoding="async">
+      {% else %}
+        <span class="thumb" aria-hidden="true"></span>
+      {% endif %}
+    </a>
+  </td>
+  <td>
+    <a href="{% url 'card-detail' game=game.code pk=p.pk %}">{{ p.display_name }}</a>
+    {% if p.piece.ban_tcg %}<span class="pill danger">{{ p.piece.ban_tcg }}</span>{% endif %}
+    {% if p.piece %}
+      <div class="meta faint small">
+        {% if p.piece.card_type %}{{ p.piece.card_type }}{% endif %}
+        {% if p.piece.race %} · {{ p.piece.race }}{% endif %}
+        {% if p.piece.attribute %} · {{ p.piece.attribute }}{% endif %}
+        {% if p.piece.colour %} · {{ p.piece.colour }}{% endif %}
+      </div>
+    {% endif %}
+  </td>
+  <td class="small muted">{{ p.expansion.display_name|truncatechars:28 }}</td>
+  <td class="num">{{ p.current_price_from|euro }}</td>
+  <td class="num gold">{{ p.current_price_trend|euro }}</td>
+  <td class="num">{{ p.current_price_30d|euro }}</td>
+  <td class="num qty-col">
+    {% include "collection/partials/qty_cell.html" with printing=p %}
+  </td>
+</tr>
+{% empty %}
+<tr><td colspan="7" class="muted">No cards match.</td></tr>
+{% endfor %}

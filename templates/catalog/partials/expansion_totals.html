@@ -1,0 +1,21 @@
+{% load money %}
+<div class="page-head">
+  <div class="titles">
+    <h1>{{ expansion.display_name }}</h1>
+    <p class="subtitle">{{ totals.quantity|default:0 }} copies owned in this set</p>
+  </div>
+</div>
+<div class="stat-grid mb">
+  <div class="stat">
+    <div class="stat-label">Set value · trend</div>
+    <div class="stat-value money">{{ totals.total_trend|euro }}</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">Lowest listed</div>
+    <div class="stat-value">{{ totals.total_from|euro }}</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">30-day average</div>
+    <div class="stat-value">{{ totals.total_30d|euro }}</div>
+  </div>
+</div>

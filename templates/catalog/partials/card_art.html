@@ -1,0 +1,17 @@
+{% comment %}
+Card art for a printing. Always goes through the local cache view — both
+catalog providers blacklist for hotlinking — and falls back to a placeholder
+when the printing never resolved to a catalog piece.
+
+Usage: {% include "catalog/partials/card_art.html" with printing=p size="small" %}
+{% endcomment %}
+<div class="art-frame">
+  {% if printing.piece_id %}
+    <img src="{% url 'card-art' piece_id=printing.piece_id size=size|default:'small' %}"
+         alt="{{ printing.display_name }}" loading="lazy" decoding="async" width="59" height="86">
+  {% else %}
+    <div class="art-placeholder" title="No catalog match for this printing yet">
+      {{ printing.display_name|truncatechars:34 }}
+    </div>
+  {% endif %}
+</div>

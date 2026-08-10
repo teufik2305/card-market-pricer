@@ -1,0 +1,34 @@
+{# The one quantity widget: expansion rows, browser rows, card detail all use it. #}
+{% comment %}hx-sync serializes the cell's requests: editing the input then clicking a
+   stepper fires change + click; without sync the two POSTs race on one target.{% endcomment %}
+<div class="qty-cell" id="qty-{{ printing.pk }}">
+  <button type="button" class="stepper" aria-label="one less"
+          hx-post="{% url 'update-quantity' card_id=printing.pk %}" hx-vals='{"op":"dec"}'
+          hx-sync="closest .qty-cell:queue last"
+          hx-target="#qty-{{ printing.pk }}" hx-swap="outerHTML">−</button>
+  <input type="number" class="qty-input" name="value" inputmode="numeric"
+         min="0" max="999" value="{{ printing.qty|default:0 }}"
+         hx-post="{% url 'update-quantity' card_id=printing.pk %}" hx-vals='{"op":"set"}'
+         hx-sync="closest .qty-cell:queue last"
+         hx-trigger="change" hx-target="#qty-{{ printing.pk }}" hx-swap="outerHTML">
+  <button type="button" class="stepper" aria-label="one more"
+          hx-post="{% url 'update-quantity' card_id=printing.pk %}" hx-vals='{"op":"inc"}'
+          hx-sync="closest .qty-cell:queue last"
+          hx-target="#qty-{{ printing.pk }}" hx-swap="outerHTML">+</button>
+</div>
+{% if change %}
+<div class="toast success" hx-swap-oob="afterbegin:#toasts">
+  <span>{{ printing.display_name }}: {{ change.old_quantity }} → {{ change.new_quantity }}</span>
+  <button type="button" class="undo-btn"
+          hx-post="{% url 'undo-change' pk=change.pk %}"
+          hx-target="#qty-{{ printing.pk }}" hx-swap="outerHTML"
+          hx-on::after-request="this.closest('.toast').remove()">Undo</button>
+  <button type="button" class="close-btn" onclick="this.closest('.toast').remove()">✕</button>
+</div>
+{% endif %}
+{% if error %}
+<div class="toast error" hx-swap-oob="afterbegin:#toasts">
+  <span>{{ error }}</span>
+  <button type="button" class="close-btn" onclick="this.closest('.toast').remove()">✕</button>
+</div>
+{% endif %}

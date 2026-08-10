@@ -1,0 +1,116 @@
+{% load money %}
+{% if error %}<div class="notice error">{{ error }}</div>{% endif %}
+{% if added_cards %}
+<div class="notice success">
+  Added <strong>{{ added_copies }}</strong> cop{{ added_copies|pluralize:"y,ies" }} across
+  {{ added_cards }} card{{ added_cards|pluralize }}.
+</div>
+{% endif %}
+
+<section class="panel">
+  <div class="panel-head">
+    <h2>Contents</h2>
+    <span class="pill">{{ rows|length }} card{{ rows|length|pluralize }}</span>
+  </div>
+
+  {% if rows %}
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th colspan="2">Card</th>
+          <th>Set</th>
+          <th class="num">Qty</th>
+          <th class="num">{% if package.kind == "keep" %}Owned free{% else %}Sellable{% endif %}</th>
+          {% if package.kind != "keep" %}
+            <th class="num">Listed @</th>
+            <th class="num">Line (listed)</th>
+          {% endif %}
+          <th class="num">Line (now)</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in rows %}
+        <tr class="{% if row.over_committed %}flag-over{% endif %}">
+          <td style="width:44px">
+            {% if row.item.card.piece_id %}
+            <img class="thumb" src="{% url 'card-art' piece_id=row.item.card.piece_id size='small' %}"
+                 alt="" loading="lazy" decoding="async">
+            {% endif %}
+          </td>
+          <td>
+            <a href="{% url 'card-detail' game=game.code pk=row.item.card.pk %}">{{ row.item.card.display_name }}</a>
+          </td>
+          <td class="small muted">{{ row.item.card.expansion.display_name|truncatechars:26 }}</td>
+          <td class="num">{{ row.item.quantity }}</td>
+          <td class="num">
+            {{ row.sellable }}
+            {% if row.over_committed %}<span class="pill danger">too many</span>{% endif %}
+          </td>
+          {% if package.kind != "keep" %}
+            <td class="num">{{ row.item.unit_price_at_listing|euro }}</td>
+            <td class="num">{{ row.line_listed|euro }}</td>
+          {% endif %}
+          <td class="num gold">{{ row.line_current|euro }}</td>
+          <td>
+            {% if package.status != "sold" %}
+            <button type="button" class="btn btn-sm"
+                    hx-post="{% url 'package-remove-item' game=game.code pk=package.pk item_id=row.item.pk %}"
+                    hx-target="#package-panel" hx-swap="innerHTML">Remove</button>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      <tfoot>
+        <tr>
+          <th colspan="{% if package.kind == 'keep' %}5{% else %}7{% endif %}">Total</th>
+          {% if package.kind != "keep" %}<th class="num">{{ total_listed|euro }}</th>{% endif %}
+          <th class="num gold">{{ total_current|euro }}</th>
+          <th></th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  {% else %}
+  <div class="empty">
+    <p>Nothing in this package yet.</p>
+    <p class="muted small">Search your owned cards above to add some.</p>
+  </div>
+  {% endif %}
+</section>
+
+{% if package.kind == "keep" %}
+  <div class="notice info mt">
+    A keep package is never sold — these copies simply don't count as sellable anywhere else.
+  </div>
+{% elif package.status == "sold" %}
+  <div class="notice success mt">
+    Sold {{ package.sold_at|date:"Y-m-d H:i" }}{% if package.buyer_name %} to {{ package.buyer_name }}{% endif %}
+    {% if package.sold_price %}for <strong>{{ package.sold_price|euro }}</strong>{% endif %}.
+    Holdings were decremented and audited — each change is individually revertible.
+  </div>
+{% elif rows %}
+  <section class="panel mt">
+    <div class="panel-head"><h2>Finalize sale</h2></div>
+    <div class="panel-body">
+      {% if blocked %}
+      <div class="notice error">
+        Some lines exceed what you can sell (owned minus copies reserved in a keep package).
+        Fix the quantities before finalizing.
+      </div>
+      {% endif %}
+      <form class="filter-bar" style="margin:0" onsubmit="return false">
+        <input type="text" name="buyer_name" placeholder="Buyer (optional)" aria-label="Buyer">
+        <input type="number" name="sold_price" step="0.01" min="0" placeholder="Sold price €"
+               aria-label="Sold price">
+        <button type="button" class="btn btn-primary" {% if blocked %}disabled{% endif %}
+                hx-post="{% url 'package-finalize' game=game.code pk=package.pk %}"
+                hx-include="closest form"
+                hx-confirm="Mark this package sold? Every card in it will be decremented from your collection (audited, and each change can be reverted individually)."
+                hx-target="#package-panel" hx-swap="innerHTML">Mark sold</button>
+      </form>
+    </div>
+  </section>
+{% endif %}

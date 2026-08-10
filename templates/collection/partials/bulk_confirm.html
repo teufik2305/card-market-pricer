@@ -1,0 +1,42 @@
+{# Tier-1 confirm: states the exact impact in numbers before anything changes. #}
+<dialog id="bulk-dialog">
+  <div class="modal-head">
+    <h2>
+      {% if op == "set" %}Set quantity = {{ value }}
+      {% elif op == "inc" %}Add +1
+      {% else %}Zero out{% endif %}
+      · {{ preview.total }} card{{ preview.total|pluralize }}
+    </h2>
+  </div>
+  <div class="modal-body stack">
+    {% if preview.changing %}
+      <p>
+        <strong>{{ preview.changing|length }}</strong> card{{ preview.changing|length|pluralize }} will change
+        <span class="muted">({{ preview.unchanged }} already at that value).</span>
+      </p>
+      <ul class="impact-list">
+        {% for card, current, new in sample %}
+          <li>{{ card.display_name }}: <span class="num">{{ current }} → {{ new }}</span></li>
+        {% endfor %}
+        {% if more %}<li class="muted">…and {{ more }} more</li>{% endif %}
+      </ul>
+    {% else %}
+      <p class="muted">Nothing would change — all {{ preview.total }} cards are already at that value.</p>
+    {% endif %}
+  </div>
+  <div class="modal-foot">
+    <button type="button" class="btn"
+            onclick="this.closest('dialog').close()">Cancel</button>
+    {% if preview.changing %}
+    <button type="button" class="btn btn-primary"
+            hx-post="{% url 'bulk-apply' %}"
+            hx-vals='{"game": "{{ game.code }}", "expansion": "{{ expansion.slug }}",
+                      "op": "{{ op }}", "value": "{{ value }}",
+                      "q": "{{ q|escapejs }}", "owned": "{{ owned_only|yesno:'1,0' }}"}'
+            hx-target="#card-panel" hx-swap="innerHTML"
+            hx-on::after-request="this.closest('dialog').close()">
+      Apply to {{ preview.changing|length }} card{{ preview.changing|length|pluralize }}
+    </button>
+    {% endif %}
+  </div>
+</dialog>

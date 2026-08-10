@@ -1,0 +1,33 @@
+{% load money %}
+{% for e in expansions %}
+<tr>
+  <td>
+    <a href="{% url 'expansion-detail' game=game.code slug=e.slug %}">{{ e.display_name }}</a>
+  </td>
+  <td>
+    {% if e.total_cards %}
+    <div class="meter {% if e.owned_cards == e.total_cards %}success{% endif %}"
+         title="{{ e.owned_cards }} of {{ e.total_cards }} cards owned">
+      <span style="width:{% widthratio e.owned_cards e.total_cards 100 %}%"></span>
+    </div>
+    {% else %}
+    <span class="faint small">no cards yet</span>
+    {% endif %}
+  </td>
+  <td class="num">{{ e.owned_cards }} <span class="faint">/ {{ e.total_cards }}</span></td>
+  <td class="num gold">{{ e.owned_value_trend|euro }}</td>
+  <td>
+    {% if e.fully_scraped %}
+      <span class="pill success">complete</span>
+    {% else %}
+      <span class="pill warn">partial</span>
+    {% endif %}
+  </td>
+</tr>
+{% empty %}
+<tr>
+  <td colspan="5" class="muted">
+    No sets match{% if owned_only %} — try unchecking “Owned only”{% endif %}.
+  </td>
+</tr>
+{% endfor %}

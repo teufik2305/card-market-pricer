@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load money %}
+{% block title %}{{ game.name }} packages — Cardvault{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div class="titles">
+    <h1>{{ game.name }} packages</h1>
+    <p class="subtitle">
+      Two kinds. A <strong>sell package</strong> bundles cards to sell together and freezes
+      each price when you add it, so a moving market doesn't change the deal you quoted —
+      marking it sold decrements your holdings through the audited path.
+      A <strong>keep package</strong> is the opposite: copies in it are never offered for sale.
+    </p>
+  </div>
+</div>
+
+<form method="post" action="{% url 'package-create' game=game.code %}" class="filter-bar">
+  {% csrf_token %}
+  <input class="grow" type="text" name="name" placeholder="New package name…" required
+         aria-label="Package name">
+  <select name="kind" aria-label="Package kind">
+    <option value="sell">For sale</option>
+    <option value="keep">Keep — never sell</option>
+  </select>
+  <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+{% if packages %}
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr><th>Package</th><th>Kind</th><th>Status</th><th class="num">Cards</th>
+          <th class="num">Copies</th><th>Buyer</th><th>Created</th></tr>
+    </thead>
+    <tbody>
+      {% for p in packages %}
+      <tr>
+        <td><a href="{% url 'package-detail' game=game.code pk=p.pk %}">{{ p.name }}</a></td>
+        <td>
+          {% if p.kind == "keep" %}<span class="pill accent">keep</span>
+          {% else %}<span class="pill">for sale</span>{% endif %}
+        </td>
+        <td><span class="pill {{ p.status }}">{{ p.get_status_display }}</span></td>
+        <td class="num">{{ p.item_count|default:0 }}</td>
+        <td class="num">{{ p.copy_count|default:0 }}</td>
+        <td class="small muted">{{ p.buyer_name|default:"—" }}</td>
+        <td class="small muted">{{ p.created_at|date:"Y-m-d" }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<div class="panel">
+  <div class="empty">
+    <div class="empty-icon" aria-hidden="true">◰</div>
+    <p>No packages yet.</p>
+    <p class="muted small">Create one above, then add cards from your collection.</p>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,49 @@
+{% load money %}
+<dialog id="quick-add-dialog">
+  <div class="modal-head">
+    <h2>Quick add</h2>
+    <button type="button" class="btn btn-sm btn-ghost"
+            onclick="this.closest('dialog').close()">Esc</button>
+  </div>
+  <div class="modal-body stack">
+    <p class="hint" style="margin-top:-.3rem">
+      Search any card across every game and set its quantity inline — for loose cards,
+      without hunting for the right set first.
+    </p>
+    <input type="search" name="q" value="{{ q }}" autofocus
+           placeholder="Type at least 3 letters…"
+           hx-get="{% url 'quick-add' %}" hx-target="#quick-add-results"
+           hx-select="#quick-add-results" hx-swap="outerHTML"
+           hx-trigger="input changed delay:250ms, search">
+
+    <div id="quick-add-results">
+      {% if too_short %}
+        <p class="muted small">Keep typing — at least 3 letters.</p>
+      {% elif q and not results %}
+        <p class="muted small">No cards match “{{ q }}”.</p>
+      {% elif results %}
+        <div class="table-wrap quick-add-table">
+        <table class="qty-table">
+          <thead><tr><th colspan="2">Card</th><th>Set</th><th class="num">Trend</th><th class="num qty-col">Qty</th></tr></thead>
+          <tbody>
+            {% for p in results %}
+            <tr>
+              <td style="width:44px">
+                {% if p.piece_id %}
+                <img class="thumb" src="{% url 'card-art' piece_id=p.piece_id size='small' %}"
+                     alt="" loading="lazy" decoding="async">
+                {% endif %}
+              </td>
+              <td>{{ p.display_name }}</td>
+              <td class="small muted">{{ p.expansion.game.name }} · {{ p.expansion.display_name|truncatechars:24 }}</td>
+              <td class="num gold">{{ p.current_price_trend|euro }}</td>
+              <td class="num qty-col">{% include "collection/partials/qty_cell.html" with printing=p %}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</dialog>

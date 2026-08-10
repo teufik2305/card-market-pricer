@@ -1,6 +1,14 @@
 .ipynb_checkpoints
+
 .idea
 
 credentials/*
 
 *.xlsx
+
+# cardvault
+var/
+.venv/
+__pycache__/
+*.pyc
+.env

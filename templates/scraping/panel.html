@@ -1,0 +1,408 @@
+{% extends "base.html" %}
+{% block title %}Data jobs — Cardvault{% endblock %}
+{% block content %}
+
+<div class="page-head">
+  <div class="titles">
+    <h1>Data jobs</h1>
+    <p class="subtitle">
+      Two ways to fill your collection with data, and you can mix them freely.
+      Every job runs in the background and takes a database backup first. Cancelling is
+      always safe — everything already fetched is saved — but a job can't be resumed:
+      to cover the rest, start it again and it skips what's already done.
+    </p>
+  </div>
+</div>
+
+{% if error %}<div class="notice error">{{ error }}</div>{% endif %}
+
+<div class="notice info">
+  <span class="grow">
+    <strong>Which should I use?</strong>
+    The <strong>public APIs</strong> are free, fast and unblockable — use them for card names,
+    art, types and rough prices. The <strong>Cardmarket scraper</strong> is slow and can be
+    blocked, but it is the only source of <em>real per-printing prices</em> — what your
+    Starlight Rare is actually worth, as opposed to what the card is worth on average.
+    A normal setup runs the APIs often and the scraper occasionally.
+  </span>
+</div>
+
+{% if active_job %}
+<section class="mb">
+  <h2 class="mb">Running now</h2>
+  <div id="job-progress"
+       hx-get="{% url 'scrape-job-progress' pk=active_job.pk %}"
+       hx-trigger="every 3s" hx-swap="innerHTML">
+    {% include "scraping/partials/job_progress.html" with job=active_job %}
+  </div>
+</section>
+{% endif %}
+
+<h2 class="mb">What you have right now</h2>
+<div class="table-wrap mb">
+  <table>
+    <thead>
+      <tr><th>Game</th><th class="num">Catalog cards</th><th>Printings linked</th>
+          <th class="num">Owned</th><th class="num">Owned without a usable price</th>
+          <th class="num">Priced from catalog</th><th>Catalog last imported</th></tr>
+    </thead>
+    <tbody>
+      {% for row in data_health.games %}
+      <tr>
+        <td><strong>{{ row.game.name }}</strong></td>
+        <td class="num">{{ row.pieces }}</td>
+        <td>
+          <div class="row" style="gap:.5rem">
+            <div class="meter {% if row.linked_pct >= 95 %}success{% endif %}" style="flex:1;min-width:70px">
+              <span style="width:{{ row.linked_pct }}%"></span>
+            </div>
+            <span class="small muted">{{ row.linked_pct }}%</span>
+          </div>
+        </td>
+        <td class="num">{{ row.owned }}</td>
+        <td class="num">{% if row.owned_unpriced %}<span class="err">{{ row.owned_unpriced }}</span>{% else %}0{% endif %}</td>
+        <td class="num">{{ row.catalog_priced }}</td>
+        <td class="small muted">{{ row.last_catalog_import|date:"Y-m-d H:i"|default:"never" }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<p class="hint mb">
+  Card art cached locally: <strong>{{ data_health.art_cached }}</strong> images
+  ({{ data_health.art_bytes|filesizeformat }}). Art downloads by itself the first time you
+  look at a card — the job below just does it in advance.
+</p>
+
+{% if active_job %}
+<div class="notice warn">A job is already running — they go one at a time.</div>
+{% else %}
+
+<h2 class="mb">Public APIs <span class="pill success">fast · no browser</span></h2>
+{% if uncatalogued %}
+<div class="notice warn">
+  <span class="grow">
+    No card catalog is configured for
+    {% for g in uncatalogued %}<strong>{{ g.name }}</strong>{% if not forloop.last %}, {% endif %}{% endfor %},
+    so these jobs skip {{ uncatalogued|pluralize:"it,them" }}. Yu-Gi-Oh! and Digimon have
+    built-in providers; any other game can point at a JSON API of its own —
+    <a href="{% url 'admin:catalog_game_changelist' %}" hx-boost="false">set “Catalog
+    provider” on the game</a>. No code changes needed.
+  </span>
+</div>
+{% endif %}
+<div class="grid grid-auto mb">
+
+  <form class="panel" method="post" action="{% url 'scrape-job-create' %}">
+    {% csrf_token %}
+    <div class="panel-head"><h3>1. Import card catalog</h3></div>
+    <div class="panel-body stack" style="gap:.75rem">
+      <input type="hidden" name="job_type" value="import_catalog">
+      {% if not catalog_games %}<p class="hint">No game has a card catalog configured yet.</p>{% endif %}
+      <p class="hint">
+        Cardmarket sells cards but never says what they <em>are</em>. This downloads the
+        game's whole card list from <strong>YGOPRODeck</strong> (Yu-Gi-Oh!) or
+        <strong>digimoncard.io</strong> (Digimon) — name, type, attribute, level, ATK,
+        archetype, banlist status, card text and artwork — into a reference library.
+        It doesn't touch your quantities or prices. One request, about 15 seconds.
+      </p>
+      <label class="field">Game
+        <select name="game">{% for g in catalog_games %}<option value="{{ g.code }}">{{ g.name }}</option>{% endfor %}</select>
+      </label>
+      <p class="hint">Run this first, and again every month or two for new sets.</p>
+    </div>
+    <div class="panel-foot"><button type="submit" class="btn btn-primary">Run</button></div>
+  </form>
+
+  <form class="panel" method="post" action="{% url 'scrape-job-create' %}">
+    {% csrf_token %}
+    <div class="panel-head"><h3>2. Match cards to catalog</h3></div>
+    <div class="panel-body stack" style="gap:.75rem">
+      <input type="hidden" name="job_type" value="resolve_printings">
+      {% if not catalog_games %}<p class="hint">No game has a card catalog configured yet.</p>{% endif %}
+      <p class="hint">
+        Works out which library card each Cardmarket product actually is — that
+        <code>Dark-Magician-V1-Secret-Rare</code> page in Soul Fusion is passcode
+        <code>46986414</code>. Nothing connects the two on its own: Cardmarket uses names
+        with rarity tacked on, the library uses ID numbers.
+      </p>
+      <p class="hint">
+        Once matched, your cards get their <strong>picture, type, attribute, level and
+        banlist badge</strong>, and the filters on the Cards page start working —
+        <strong>nothing shows art until this has run</strong>. Seconds to a minute.
+      </p>
+      <label class="field">Game
+        <select name="game">{% for g in catalog_games %}<option value="{{ g.code }}">{{ g.name }}</option>{% endfor %}</select>
+      </label>
+      <label class="check">
+        <input type="checkbox" name="redo" value="1">
+        Retry cards that didn't match last time
+      </label>
+      <p class="hint">
+        Worth ticking after importing a fresh catalog. Either way it never overwrites a
+        match you made by hand in the admin.
+      </p>
+      <input type="hidden" name="fuzzy" value="1">
+    </div>
+    <div class="panel-foot"><button type="submit" class="btn btn-primary">Run</button></div>
+  </form>
+
+  <form class="panel" method="post" action="{% url 'scrape-job-create' %}">
+    {% csrf_token %}
+    <div class="panel-head"><h3>3. Download card art</h3></div>
+    <div class="panel-body stack" style="gap:.75rem">
+      <input type="hidden" name="job_type" value="cache_art">
+      {% if not catalog_games %}<p class="hint">No game has a card catalog configured yet.</p>{% endif %}
+      <p class="hint">
+        Optional. Pictures already download by themselves the first time you look at a card;
+        this fetches them all in advance so browsing is instant and works offline.
+        Roughly 15 KB per thumbnail. Needs step 2 to have run.
+      </p>
+      <label class="field">Game
+        <select name="game">{% for g in catalog_games %}<option value="{{ g.code }}">{{ g.name }}</option>{% endfor %}</select>
+      </label>
+      <label class="field">Which cards
+        <select name="scope">
+          <option value="owned">Only cards I own (recommended)</option>
+          <option value="all">Every card in the catalog (slow, large)</option>
+        </select>
+      </label>
+      <label class="check"><input type="checkbox" name="sizes" value="small" checked> Thumbnails</label>
+      <label class="check"><input type="checkbox" name="sizes" value="full"> Full-size art (bigger)</label>
+    </div>
+    <div class="panel-foot"><button type="submit" class="btn btn-primary">Run</button></div>
+  </form>
+
+  <form class="panel" method="post" action="{% url 'scrape-job-create' %}">
+    {% csrf_token %}
+    <div class="panel-head"><h3>4. Fill missing prices</h3></div>
+    <div class="panel-body stack" style="gap:.75rem">
+      <input type="hidden" name="job_type" value="api_prices">
+      {% if not catalog_games %}<p class="hint">No game has a card catalog configured yet.</p>{% endif %}
+      <p class="hint">
+        Uses the catalog's Cardmarket price so cards the scraper has never priced still have
+        a value. Cardmarket often lists no price for bulk commons — this fills those in.
+      </p>
+      <div class="notice warn" style="margin:0">
+        <span class="grow small">
+          These are <strong>per-card</strong> prices, not per-printing: a Starlight Rare and a
+          Common of the same card get the same number. Fine for putting a value on bulk;
+          not what you'd quote a buyer. Priced this way, cards are tagged
+          “catalog estimate” everywhere they appear.
+        </span>
+      </div>
+      <label class="field">Game
+        <select name="game">{% for g in catalog_games %}<option value="{{ g.code }}">{{ g.name }}</option>{% endfor %}</select>
+      </label>
+      <label class="field">Which cards
+        <select name="scope">
+          <option value="owned">Only cards I own (recommended)</option>
+          <option value="all">Every linked printing</option>
+        </select>
+      </label>
+      <label class="field">How
+        <select name="mode">
+          <option value="gaps">Only cards with no usable price (safe)</option>
+          <option value="all">Overwrite scraped prices too (not recommended)</option>
+        </select>
+      </label>
+    </div>
+    <div class="panel-foot"><button type="submit" class="btn btn-primary">Run</button></div>
+  </form>
+</div>
+
+<h2 class="mb">Cardmarket scraper <span class="pill warn">slow · opens a browser</span></h2>
+<div class="notice info">
+  <span class="grow">
+    <strong>Cardmarket sits behind Cloudflare.</strong> A job opens a Chrome window — leave it
+    visible. If it shows “Verify you are human”, click it and the job carries on by itself
+    (it waits up to {{ config.challenge_timeout }}s). The browser profile is remembered, so this
+    is usually a once-per-machine chore. If a run is blocked outright, wait 15–60 minutes
+    rather than retrying — nothing is ever recorded from a blocked page.
+  </span>
+</div>
+
+<div class="grid grid-auto mb">
+  <form class="panel" method="post" action="{% url 'scrape-job-create' %}">
+    {% csrf_token %}
+    <div class="panel-head"><h3>Discover expansions</h3></div>
+    <div class="panel-body stack" style="gap:.75rem">
+      <input type="hidden" name="job_type" value="discover_expansions">
+      <p class="hint">Finds sets released since you last looked. A few minutes.</p>
+      <label class="field">Game
+        <select name="game">{% for g in games %}<option value="{{ g.code }}">{{ g.name }}</option>{% endfor %}</select>
+      </label>
+      <label class="field">Last N year groups
+        <input type="number" name="last_n_years" value="2" min="1" max="30">
+      </label>
+    </div>
+    <div class="panel-foot"><button type="submit" class="btn">Run</button></div>
+  </form>
+
+  <form class="panel" method="post" action="{% url 'scrape-job-create' %}">
+    {% csrf_token %}
+    <div class="panel-head"><h3>Discover cards</h3></div>
+    <div class="panel-body stack" style="gap:.75rem">
+      <input type="hidden" name="job_type" value="discover_cards">
+      <p class="hint">
+        Fills a set with its card list. Additive only — your quantities are never touched.
+        About a minute per set.
+      </p>
+      <label class="field">Game
+        <select name="game" id="dc-game">{% for g in games %}<option value="{{ g.code }}">{{ g.name }}</option>{% endfor %}</select>
+      </label>
+      <label class="field">Set <span class="hint">leave empty for every unfinished set</span>
+        <input type="search" name="q" placeholder="Search your sets…" autocomplete="off"
+               hx-get="{% url 'scrape-find-expansions' %}"
+               hx-include="#dc-game" hx-target="next .picker"
+               hx-trigger="input changed delay:250ms, search">
+      </label>
+      <div class="picker"></div>
+      <label class="check">
+        <input type="checkbox" name="deep_search" value="1">
+        Deep search for 300+ card sets <span class="hint">(very slow)</span>
+      </label>
+    </div>
+    <div class="panel-foot"><button type="submit" class="btn">Run</button></div>
+  </form>
+
+  <form class="panel" method="post" action="{% url 'scrape-job-create' %}">
+    {% csrf_token %}
+    <div class="panel-head"><h3>Refresh prices</h3></div>
+    <div class="panel-body stack" style="gap:.75rem">
+      <input type="hidden" name="job_type" value="refresh_prices">
+      <p class="hint">
+        The real thing: From / Trend / 30-day average for the exact printing you own, appended
+        to price history. ≈7–10 s per card, so a full refresh runs for hours.
+      </p>
+      <label class="field">Game
+        <select name="game" id="rp-game">{% for g in games %}<option value="{{ g.code }}">{{ g.name }}</option>{% endfor %}</select>
+      </label>
+      <fieldset class="scope">
+        <label>
+          <input type="radio" name="scope" value="stale" checked>
+          <span class="scope-body">
+            Only cards older than
+            <input type="number" name="stale_days" value="30" min="1" max="365" class="num-input">
+            days
+          </span>
+        </label>
+
+        <label>
+          <input type="radio" name="scope" value="all">
+          <span class="scope-body">Every card I own</span>
+        </label>
+
+        <label>
+          <input type="radio" name="scope" value="expansion">
+          <span class="scope-body">One set</span>
+        </label>
+        <div class="scope-detail">
+          <input type="search" name="q" placeholder="Search your sets…" autocomplete="off"
+                 hx-get="{% url 'scrape-find-expansions' %}"
+                 hx-include="#rp-game" hx-target="next .picker"
+                 hx-trigger="input changed delay:250ms, search">
+          <div class="picker"></div>
+        </div>
+
+        <label>
+          <input type="radio" name="scope" value="card">
+          <span class="scope-body">One card</span>
+        </label>
+        <div class="scope-detail">
+          <p class="hint">Quickest way to get a current number before you quote someone
+            — about 8 seconds, versus hours for a full refresh.</p>
+          <input type="search" name="q" placeholder="Search for a card…" autocomplete="off"
+                 hx-get="{% url 'scrape-find-cards' %}"
+                 hx-include="#rp-game" hx-target="next .picker"
+                 hx-trigger="input changed delay:250ms, search">
+          <div class="picker"></div>
+        </div>
+      </fieldset>
+    </div>
+    <div class="panel-foot"><button type="submit" class="btn">Run</button></div>
+  </form>
+</div>
+{% endif %}
+
+<details class="disclosure mb" {% if error %}open{% endif %}>
+  <summary>Browser settings — Chrome path and pacing (scraper only)</summary>
+  <div class="disclosure-body">
+    <form method="post" action="{% url 'scrape-settings' %}" class="stack" style="gap:.9rem">
+      {% csrf_token %}
+      <label class="field">
+        Chrome executable
+        <input type="text" name="chrome_binary" value="{{ config.chrome_binary }}"
+               placeholder="{{ default_chrome }}" spellcheck="false">
+        <span class="hint">
+          Leave blank to use the default: <code>{{ default_chrome }}</code>.
+          On macOS this must be the binary <em>inside</em> the app bundle, not the
+          <code>.app</code> folder. Chromium, Brave or a second Chrome install work too.
+        </span>
+      </label>
+      <div class="field-row">
+        <label class="field">Cloudflare wait (s)
+          <input type="number" name="challenge_timeout" value="{{ config.challenge_timeout }}"
+                 min="30" max="1800" class="num-input">
+        </label>
+        <label class="field">Patience (retries)
+          <input type="number" name="challenge_attempts" value="{{ config.challenge_attempts }}"
+                 min="0" max="10" class="num-input">
+        </label>
+        <label class="field">Min pause between pages (s)
+          <input type="number" name="min_item_delay" value="{{ config.min_item_delay }}"
+                 min="0" max="600" class="num-input">
+        </label>
+        <label class="field">Max pause (s)
+          <input type="number" name="max_item_delay" value="{{ config.max_item_delay }}"
+                 min="0" max="600" class="num-input">
+        </label>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+      <p class="hint">
+        <strong>Cloudflare wait:</strong> the check normally clears by itself in 5–15 s, so
+        don't set this low — under 30 s you abandon runs that were about to succeed. 180 s
+        leaves room for you to walk over and click a checkbox; you'll get a notification
+        and a beep when one actually appears.
+      </p>
+      <p class="hint">
+        <strong>Patience:</strong> when a check still hasn't cleared after that wait, the job
+        pauses (1, 5, 15, then 30 minutes), starts a fresh browser and puts the card back in
+        the queue — so an unattended run survives the odd stubborn check instead of dying on
+        it. Set 0 to stop at the first one. An outright “you have been blocked” always stops
+        immediately; waiting can't help there.
+      </p>
+      <p class="hint">
+        <strong>Pacing:</strong> how long to wait between Cardmarket page loads — it applies
+        to “discover cards” and “refresh prices”, not to the API jobs, which don't touch
+        Cardmarket at all. Slower is safer: bursts are what get an IP blocked. For a long
+        sweep 10–20 s costs hours, but a block costs a day.
+      </p>
+    </form>
+  </div>
+</details>
+
+<h2 class="mb">History</h2>
+{% if recent_jobs %}
+<div class="table-wrap">
+  <table>
+    <thead><tr><th>#</th><th>Job</th><th>Game</th><th>Status</th><th class="num">Progress</th><th>Started</th><th></th></tr></thead>
+    <tbody>
+      {% for j in recent_jobs %}
+      <tr>
+        <td class="num">{{ j.pk }}</td>
+        <td>{{ j.get_job_type_display }}</td>
+        <td>{{ j.game.name }}</td>
+        <td><span class="pill {{ j.status }}">{{ j.get_status_display }}</span></td>
+        <td class="num">{{ j.processed_items }}{% if j.total_items %} / {{ j.total_items }}{% endif %}{% if j.failed_items %} · <span class="err">{{ j.failed_items }} failed</span>{% endif %}</td>
+        <td class="small muted">{{ j.started_at|date:"Y-m-d H:i"|default:"—" }}</td>
+        <td><a class="btn btn-sm" href="{% url 'scrape-job-detail' pk=j.pk %}">Detail</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<div class="panel"><div class="empty"><p>No jobs yet.</p></div></div>
+{% endif %}
+{% endblock %}

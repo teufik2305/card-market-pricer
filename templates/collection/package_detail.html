@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% block title %}{{ package.name }} — Cardvault{% endblock %}
+{% block content %}
+<nav class="breadcrumb" aria-label="breadcrumb">
+  <a href="{% url 'package-list' game=game.code %}">{{ game.name }} packages</a>
+  <span class="sep">/</span>
+  <span>{{ package.name }}</span>
+</nav>
+
+<div class="page-head">
+  <div class="titles">
+    <h1>{{ package.name }}</h1>
+    <p class="subtitle">
+      {% if package.kind == "keep" %}
+        Copies listed here are <strong>never offered for sale</strong> — they're subtracted
+        from what any sell package may commit.
+      {% else %}
+        Prices freeze when a card is added, so a moving market doesn't change your quote.
+      {% endif %}
+    </p>
+  </div>
+  <div class="actions">
+    {% if package.kind == "keep" %}<span class="pill accent">keep</span>
+    {% else %}<span class="pill">for sale</span>{% endif %}
+    <span class="pill {{ package.status }}">{{ package.get_status_display }}</span>
+  </div>
+</div>
+
+{% if package.status != "sold" %}
+<section class="panel mb">
+  <div class="panel-head">
+    <h2>{% if package.kind == "keep" %}Reserve a card{% else %}Add cards{% endif %}</h2>
+  </div>
+  <div class="panel-body">
+    <form class="filter-bar" style="margin:0" onsubmit="return false">
+      <input class="grow" type="search" name="q" placeholder="Search your owned cards…"
+             aria-label="Search owned cards"
+             hx-get="{% url 'package-search' game=game.code pk=package.pk %}"
+             hx-target="#package-search" hx-swap="innerHTML"
+             hx-trigger="input changed delay:250ms, search">
+      <span class="htmx-indicator faint small">searching…</span>
+    </form>
+    <div id="package-search"></div>
+  </div>
+</section>
+{% endif %}
+
+<details class="disclosure mb" id="rule-builder">
+  <summary>Add many at once — by price, set, archetype or duplicates</summary>
+  <div class="disclosure-body">
+    <form id="rule-form" class="stack" style="gap:.9rem" onsubmit="return false">
+      <p class="hint" style="margin:0">
+        Pick a preset, adjust anything, then preview. Only <strong>spare</strong> copies are
+        ever offered — owned, minus reserved, minus what's already here.
+      </p>
+
+      <div class="btn-row" data-presets>
+        <button type="button" class="btn btn-sm"
+                data-preset='{"max_price":"0.40","keep_each":"0","min_price":"","archetype":"","expansion":""}'>
+          Bulk · under €0.40
+        </button>
+        <button type="button" class="btn btn-sm"
+                data-preset='{"keep_each":"1","max_price":"","min_price":"","archetype":"","expansion":""}'>
+          Duplicates · keep 1 of each
+        </button>
+        <button type="button" class="btn btn-sm"
+                data-preset='{"min_price":"10","max_price":"","keep_each":"0","archetype":"","expansion":""}'>
+          High value · over €10
+        </button>
+        <button type="button" class="btn btn-sm"
+                data-preset='{"min_price":"","max_price":"","keep_each":"0","archetype":"","expansion":""}'>
+          Everything spare
+        </button>
+      </div>
+
+      <div class="field-row">
+        <label class="field">Price basis
+          <select name="basis">
+            <option value="trend">Trend</option>
+            <option value="from">Lowest listed</option>
+            <option value="30d">30-day average</option>
+          </select>
+        </label>
+        <label class="field">Min €
+          <input type="text" name="min_price" class="num-input" inputmode="decimal" placeholder="any">
+        </label>
+        <label class="field">Max €
+          <input type="text" name="max_price" class="num-input" inputmode="decimal" placeholder="any">
+        </label>
+        <label class="field">Keep back
+          <input type="number" name="keep_each" class="num-input" min="0" max="99" value="0">
+          <span class="hint">of each card</span>
+        </label>
+      </div>
+
+      <div class="field-row">
+        <label class="field grow">Set <span class="hint">optional</span>
+          <input type="search" placeholder="Search your sets…" autocomplete="off"
+                 hx-get="{% url 'scrape-find-expansions' %}"
+                 hx-vals='{"game": "{{ game.code }}"}'
+                 hx-target="next .picker" name="q"
+                 hx-trigger="input changed delay:250ms, search">
+        </label>
+        <label class="field">Archetype <span class="hint">optional</span>
+          <select name="archetype"
+                  hx-get="{% url 'package-archetypes' game=game.code pk=package.pk %}"
+                  hx-trigger="load" hx-swap="innerHTML">
+            <option value="">Any archetype</option>
+          </select>
+        </label>
+      </div>
+      <div class="picker"></div>
+
+      <div class="btn-row">
+        <button type="button" class="btn btn-primary"
+                hx-post="{% url 'package-rule-preview' game=game.code pk=package.pk %}"
+                hx-include="#rule-form" hx-target="#modal" hx-swap="innerHTML">
+          Preview what this adds
+        </button>
+      </div>
+    </form>
+  </div>
+</details>
+
+<div id="package-panel">
+  {% include "collection/partials/package_panel.html" %}
+</div>
+{% endblock %}

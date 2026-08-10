@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Log in — Cardvault{% endblock %}
+{% block anon_content %}
+<div class="auth-shell">
+  <div class="auth-card panel">
+    <div class="panel-body stack">
+      <div class="row" style="gap:.6rem">
+        <span class="brand-mark" aria-hidden="true">CV</span>
+        <h1 style="font-size:1.4rem">Cardvault</h1>
+      </div>
+      <p class="muted small" style="margin-top:-.5rem">Your collection, ledger and price history.</p>
+      {% if form.errors %}
+      <div class="notice error">Wrong username or password.</div>
+      {% endif %}
+      <form method="post" class="stack" style="gap:.75rem">
+        {% csrf_token %}
+        <label class="field">Username
+          <input type="text" name="username" autocomplete="username" autofocus required>
+        </label>
+        <label class="field">Password
+          <input type="password" name="password" autocomplete="current-password" required>
+        </label>
+        <button type="submit" class="btn btn-primary btn-block">Log in</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+<div class="panel"><div class="panel-body stack">
+  <div class="row">
+    <strong>#{{ job.pk }} {{ job.get_job_type_display }} — {{ job.game.name }}</strong>
+    <span class="pill {{ job.status }}">{{ job.get_status_display }}</span>
+    {% if is_stalled %}<span class="pill danger">⚠ heartbeat lost — runner process may be dead</span>{% endif %}
+  </div>
+
+  {% if job.total_items %}
+  <progress value="{{ job.processed_items }}" max="{{ job.total_items }}"></progress>
+  <p>
+    {{ job.processed_items }} / {{ job.total_items }}
+    {% if progress_pct is not None %}({{ progress_pct }}%){% endif %}
+    {% if job.failed_items %} · <span class="error-text">{{ job.failed_items }} failed</span>{% endif %}
+    {% if eta_seconds %} · ETA ~{{ eta_seconds|floatformat:0 }}s{% endif %}
+  </p>
+  {% endif %}
+
+  {% if log_tail %}
+  <pre class="log">{{ log_tail }}</pre>
+  {% endif %}
+
+  {% if not is_terminal %}
+  <div class="row">
+    <a href="{% url 'scrape-job-detail' pk=job.pk %}" class="btn btn-sm">Detail</a>
+    <button type="button" class="btn btn-sm"
+            hx-post="{% url 'scrape-job-cancel' pk=job.pk %}"
+            hx-confirm="Cancel this job?&#10;&#10;Everything already fetched stays saved, but the job cannot be resumed — the rest will be recorded as not attempted. To cover what is left, start the same job again: it skips whatever is already done."
+            hx-target="#job-progress" hx-swap="innerHTML">Cancel</button>
+    {% if is_stalled %}
+    <button type="button" class="btn btn-sm btn-danger"
+            hx-post="{% url 'scrape-job-force-fail' pk=job.pk %}"
+            hx-confirm="Mark this job as failed?&#10;&#10;Use this when the runner process is dead. Everything already fetched stays saved; the job cannot be resumed, so start it again to cover the rest."
+            hx-target="#job-progress" hx-swap="innerHTML">Force fail</button>
+    {% endif %}
+  </div>
+  {% else %}
+  {% if skipped_items %}
+  <p class="hint">
+    {{ skipped_items }} item{{ skipped_items|pluralize }} were never attempted. Jobs don't
+    resume — start the same job again and it will cover what's still outstanding, skipping
+    everything already done.
+  </p>
+  {% endif %}
+  <div class="row"><a class="btn btn-sm" href="{% url 'scrape-panel' %}">Back to data jobs</a></div>
+  {% endif %}
+</div></div>

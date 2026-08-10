@@ -1,0 +1,57 @@
+{% load money %}
+{% comment %}
+Tier-1 confirm, same contract as the bulk quantity dialog: the numbers shown are
+computed by the same function that will do the work, so they cannot disagree.
+{% endcomment %}
+<dialog id="rule-dialog">
+  <div class="modal-head">
+    <h2>Add {{ preview.cards }} card{{ preview.cards|pluralize }} to “{{ package.name }}”</h2>
+  </div>
+  <div class="modal-body stack">
+    {% if preview.cards %}
+      <p>
+        <strong>{{ preview.copies }}</strong> cop{{ preview.copies|pluralize:"y,ies" }} across
+        <strong>{{ preview.cards }}</strong> card{{ preview.cards|pluralize }}
+        {% if package.kind != "keep" %}
+        · listing value <strong class="gold">{{ preview.total|euro }}</strong>
+        {% endif %}
+      </p>
+      <p class="hint">
+        Only spare copies are offered: owned, minus anything reserved in a keep package,
+        minus what this package already holds{% if rule.keep_each %}, minus the
+        {{ rule.keep_each }} of each you're keeping back{% endif %}.
+      </p>
+      <ul class="impact-list">
+        {% for c in preview.sample %}
+        <li>
+          {{ c.card.display_name }}
+          <span class="muted">· {{ c.card.expansion.display_name|truncatechars:24 }}</span>
+          <span class="num">×{{ c.quantity }}</span>
+          <span class="gold">{{ c.unit_price|euro }}</span>
+          <span class="faint small">(you own {{ c.owned }})</span>
+        </li>
+        {% endfor %}
+        {% if preview.more %}<li class="muted">…and {{ preview.more }} more</li>{% endif %}
+      </ul>
+    {% else %}
+      <p class="muted">Nothing matches that rule — no spare copies fit those bounds.</p>
+    {% endif %}
+  </div>
+  <div class="modal-foot">
+    <button type="button" class="btn" onclick="this.closest('dialog').close()">Cancel</button>
+    {% if preview.cards %}
+    <button type="button" class="btn btn-primary"
+            hx-post="{% url 'package-rule-apply' game=game.code pk=package.pk %}"
+            hx-vals='{"basis": "{{ rule.basis }}",
+                      "min_price": "{{ rule.min_price|default_if_none:'' }}",
+                      "max_price": "{{ rule.max_price|default_if_none:'' }}",
+                      "expansion": "{{ rule.expansion_slug|escapejs }}",
+                      "archetype": "{{ rule.archetype|escapejs }}",
+                      "keep_each": "{{ rule.keep_each }}"}'
+            hx-target="#package-panel" hx-swap="innerHTML"
+            hx-on::after-request="this.closest('dialog').close()">
+      Add {{ preview.copies }} cop{{ preview.copies|pluralize:"y,ies" }}
+    </button>
+    {% endif %}
+  </div>
+</dialog>

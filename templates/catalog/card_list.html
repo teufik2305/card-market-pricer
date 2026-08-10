@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}{{ game.name }} cards — Cardvault{% endblock %}
+{% block content %}
+<div class="page-head">
+  <div class="titles">
+    <h1>{{ game.name }}</h1>
+    <p class="subtitle">{{ result_count }} card{{ result_count|pluralize }} matching{% if owned_only %} · owned only{% endif %}</p>
+  </div>
+  <div class="actions">
+    <a class="btn {% if view == 'gallery' %}btn-primary{% endif %}"
+       href="?{% querystring view='gallery' %}">◫ Gallery</a>
+    <a class="btn {% if view == 'table' %}btn-primary{% endif %}"
+       href="?{% querystring view='table' %}">▤ Table</a>
+  </div>
+</div>
+
+<form class="filter-bar" hx-get="{% url 'card-list' game=game.code %}"
+      hx-target="#browser-panel" hx-push-url="true"
+      hx-trigger="change, input changed delay:300ms">
+      {% comment %}Events bubble from the inputs to this form, so one pair of
+      triggers covers every control. The previous "from:find select" only ever
+      matched the FIRST select — htmx's find returns one element — so the second
+      and later filter dropdowns silently did nothing.{% endcomment %}
+  <input type="hidden" name="view" value="{{ view }}">
+  <input class="grow" type="search" name="q" value="{{ q }}"
+         placeholder="Search {{ game.name }} cards…" aria-label="Search cards">
+
+  <input type="hidden" name="owned" value="0">
+  <label class="check">
+    <input type="checkbox" name="owned" value="1" {% if owned_only %}checked{% endif %}>
+    Owned only
+  </label>
+
+  {% for facet in facets %}
+  <label class="filter">
+    <span class="filter-label">{{ facet.label }}</span>
+    <select name="{{ facet.name }}">
+      <option value="">Any</option>
+      {% for option in facet.options %}
+        <option value="{{ option.value }}" {% if option.selected %}selected{% endif %}>{{ option.value }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  {% endfor %}
+
+  <label class="filter">
+    <span class="filter-label">Sort by</span>
+    <select name="sort">
+      <option value="-trend" {% if sort == "-trend" %}selected{% endif %}>Trend ↓</option>
+      <option value="trend" {% if sort == "trend" %}selected{% endif %}>Trend ↑</option>
+      <option value="name" {% if sort == "name" %}selected{% endif %}>Name</option>
+      <option value="qty" {% if sort == "qty" %}selected{% endif %}>Quantity ↓</option>
+      <option value="level" {% if sort == "level" %}selected{% endif %}>Level ↓</option>
+      <option value="atk" {% if sort == "atk" %}selected{% endif %}>ATK ↓</option>
+    </select>
+  </label>
+  <span class="htmx-indicator faint small">searching…</span>
+</form>
+
+<div id="browser-panel">
+  {% include "catalog/partials/browser_panel.html" %}
+</div>
+{% endblock %}

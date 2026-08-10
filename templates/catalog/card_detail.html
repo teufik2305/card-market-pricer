@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+{% load money %}
+{% block title %}{{ printing.display_name }} — Cardvault{% endblock %}
+{% block content %}
+
+<nav class="breadcrumb" aria-label="breadcrumb">
+  <a href="{% url 'card-list' game=game.code %}">{{ game.name }}</a>
+  <span class="sep">/</span>
+  <a href="{% url 'expansion-detail' game=game.code slug=printing.expansion.slug %}">{{ printing.expansion.display_name }}</a>
+  <span class="sep">/</span>
+  <span>{{ printing.display_name }}</span>
+</nav>
+
+<div class="card-detail">
+  <div class="card-detail-art">
+    {% if printing.piece_id %}
+      <a href="{% url 'card-art' piece_id=printing.piece_id size='full' %}"
+         target="_blank" rel="noopener" hx-boost="false" title="Open the full-size art">
+        {% include "catalog/partials/card_art.html" with printing=printing size="full" %}
+      </a>
+    {% else %}
+      {% include "catalog/partials/card_art.html" with printing=printing size="full" %}
+    {% endif %}
+    <div class="stack mt" style="gap:.4rem">
+      <a class="btn btn-sm btn-block" href="{{ printing.cardmarket_url }}"
+         target="_blank" rel="noopener" hx-boost="false">Cardmarket ↗</a>
+      {% if piece.extra.ygoprodeck_url %}
+      <a class="btn btn-sm btn-ghost btn-block" href="{{ piece.extra.ygoprodeck_url }}"
+         target="_blank" rel="noopener" hx-boost="false">YGOPRODeck ↗</a>
+      {% endif %}
+      {% if printing.price_source %}
+      <p class="hint" style="text-align:center">
+        Price from {{ printing.get_price_source_display|lower }}
+      </p>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="card-detail-main stack">
+    <div class="page-head" style="margin-bottom:0">
+      <div class="titles">
+        <h1>{{ printing.display_name }}</h1>
+        <p class="subtitle">
+          {{ printing.expansion.display_name }}
+          {% if reserved %}· <span class="pill accent">{{ reserved }} reserved</span>{% endif %}
+          {% if piece.ban_tcg %}· <span class="pill danger">TCG {{ piece.ban_tcg }}</span>{% endif %}
+          {% if piece.ban_ocg %}· <span class="pill warn">OCG {{ piece.ban_ocg }}</span>{% endif %}
+        </p>
+      </div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat">
+        <div class="stat-label">Trend</div>
+        <div class="stat-value money">{{ printing.current_price_trend|euro }}</div>
+        <div class="stat-sub">
+          {% if printing.prices_updated_at %}as of {{ printing.prices_updated_at|date:"Y-m-d" }}
+          {% else %}never scraped{% endif %}
+        </div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">From</div>
+        <div class="stat-value">{{ printing.current_price_from|euro }}</div>
+        <div class="stat-sub">cheapest listing</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">30-day avg</div>
+        <div class="stat-value">{{ printing.current_price_30d|euro }}</div>
+        <div class="stat-sub">{{ snapshots|length }} price observation{{ snapshots|length|pluralize }}</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">You own</div>
+        <div class="card-detail-qty mt" style="margin-top:.3rem">
+          {% include "collection/partials/qty_cell.html" with printing=printing %}
+        </div>
+        <div class="stat-sub">worth {{ line_value|euro }}</div>
+      </div>
+    </div>
+
+    {% if piece %}
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Card data</h2>
+        <span class="pill">{{ piece.external_id }}</span>
+        {% if piece.archetype %}<span class="pill accent">{{ piece.archetype }}</span>{% endif %}
+      </div>
+      <div class="panel-body stack">
+        <div class="meta-grid">
+          {% if piece.card_type %}<div><span class="stat-label">Type</span><div>{{ piece.card_type }}</div></div>{% endif %}
+          {% if piece.race %}<div><span class="stat-label">Race</span><div>{{ piece.race }}</div></div>{% endif %}
+          {% if piece.attribute %}<div><span class="stat-label">Attribute</span><div class="attr-{{ piece.attribute|lower }}">{{ piece.attribute }}</div></div>{% endif %}
+          {% if piece.colour %}<div><span class="stat-label">Colour</span><div class="col-{{ piece.colour|lower }}">{{ piece.colour }}</div></div>{% endif %}
+          {% if piece.level %}<div><span class="stat-label">Level</span><div>{{ piece.level }}</div></div>{% endif %}
+          {% if piece.atk is not None %}<div><span class="stat-label">{% if piece.colour %}DP{% else %}ATK{% endif %}</span><div>{{ piece.atk }}</div></div>{% endif %}
+          {% if piece.defence is not None %}<div><span class="stat-label">DEF</span><div>{{ piece.defence }}</div></div>{% endif %}
+          {% if piece.play_cost is not None %}<div><span class="stat-label">Play cost</span><div>{{ piece.play_cost }}</div></div>{% endif %}
+          {% if piece.evolution_cost is not None %}<div><span class="stat-label">Evolve</span><div>{{ piece.evolution_cost }}</div></div>{% endif %}
+          {% if piece.catalog_price_eur %}<div><span class="stat-label">Catalog €</span><div>{{ piece.catalog_price_eur|euro }}</div></div>{% endif %}
+        </div>
+        {% if piece.text %}<p class="card-text small">{{ piece.text|linebreaksbr }}</p>{% endif %}
+      </div>
+    </section>
+    {% else %}
+    <div class="notice warn">
+      This printing hasn't been matched to a catalog card yet, so there's no art or card data.
+      Run <code>manage.py resolve_printings --redo</code>, or link it by hand in the admin.
+    </div>
+    {% endif %}
+
+    {% if other_printings %}
+    <section class="panel">
+      <div class="panel-head"><h2>Other printings</h2>
+        <span class="muted small">same card, different Cardmarket product</span></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Set</th><th>Printing</th><th class="num">Trend</th><th class="num">Owned</th></tr></thead>
+          <tbody>
+            {% for op in other_printings %}
+            <tr class="{% if not op.qty %}dim{% endif %}">
+              <td class="small">{{ op.expansion.display_name }}</td>
+              <td><a href="{% url 'card-detail' game=game.code pk=op.pk %}">{{ op.slug }}</a></td>
+              <td class="num gold">{{ op.current_price_trend|euro }}</td>
+              <td class="num">{{ op.qty|default:0 }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+    {% endif %}
+
+    <section class="panel">
+      <div class="panel-head"><h2>Price history</h2></div>
+      {% if snapshots %}
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Observed</th><th class="num">From</th><th class="num">Trend</th><th class="num">30d</th><th>Source</th></tr></thead>
+          <tbody>
+            {% for s in snapshots %}
+            <tr>
+              <td class="small">{{ s.observed_at|date:"Y-m-d H:i" }}</td>
+              <td class="num">{{ s.price_from|euro }}</td>
+              <td class="num gold">{{ s.price_trend|euro }}</td>
+              <td class="num">{{ s.price_30d_avg|euro }}</td>
+              <td><span class="pill">{{ s.get_source_display }}</span></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <div class="empty"><p>No price history yet — run a price refresh.</p></div>
+      {% endif %}
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><h2>Quantity history</h2></div>
+      {% if changes %}
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>When</th><th class="num">Change</th><th>Reason</th><th>Note</th><th>By</th><th></th></tr></thead>
+          <tbody>
+            {% for c in changes %}
+            <tr>
+              <td class="small muted">{{ c.created_at|date:"Y-m-d H:i" }}</td>
+              <td class="num">{{ c.old_quantity }} → <strong>{{ c.new_quantity }}</strong></td>
+              <td><span class="pill">{{ c.get_reason_display }}</span></td>
+              <td class="small">{{ c.note }}</td>
+              <td class="small muted">{{ c.user|default:"—" }}</td>
+              <td>
+                {% comment %}Explicit set, not undo: undo is guarded against stale changes, while
+                   "set back to N" on an old history row is an intentional absolute edit.{% endcomment %}
+                <button type="button" class="btn btn-sm undo-btn"
+                        hx-post="{% url 'update-quantity' card_id=printing.pk %}"
+                        hx-vals='{"op":"set","value":"{{ c.old_quantity }}"}'
+                        hx-target="#qty-{{ printing.pk }}" hx-swap="outerHTML">Set back to {{ c.old_quantity }}</button>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <div class="empty"><p>No quantity changes recorded.</p></div>
+      {% endif %}
+    </section>
+  </div>
+</div>
+{% endblock %}

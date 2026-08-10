@@ -1,0 +1,21 @@
+{% comment %}
+Search results as radio buttons: choosing one IS the form value, so there is no
+hidden field to keep in sync and no JavaScript involved.
+{% endcomment %}
+{% if needs_game %}
+  <p class="hint">Pick a game first.</p>
+{% elif too_short %}
+  <p class="hint">Keep typing — at least 2 letters.</p>
+{% elif q and not results %}
+  <p class="hint">Nothing matches “{{ q }}”.</p>
+{% elif results %}
+  <div class="picker-results">
+    {% for r in results %}
+    <label class="picker-option">
+      <input type="radio" name="{{ field }}" value="{{ r.value }}">
+      <span class="picker-name">{{ r.label }}</span>
+      <span class="picker-hint">{{ r.hint }}</span>
+    </label>
+    {% endfor %}
+  </div>
+{% endif %}

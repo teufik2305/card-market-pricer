@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% load money %}
+{% block title %}Dashboard — Cardvault{% endblock %}
+{% block content %}
+
+{% if active_job %}
+<div class="notice info">
+  <span class="pill running">{{ active_job.get_status_display }}</span>
+  <span class="grow">
+    Job #{{ active_job.pk }} {{ active_job.get_job_type_display }} ({{ active_job.game.name }}) —
+    {{ active_job.processed_items }}{% if active_job.total_items %} / {{ active_job.total_items }}{% endif %} items
+  </span>
+  <a class="btn btn-sm" href="{% url 'scrape-job-detail' pk=active_job.pk %}">View progress</a>
+</div>
+{% endif %}
+
+<div class="page-head">
+  <div class="titles">
+    <h1>Your collection</h1>
+    <p class="subtitle">Everything below is live from the ledger — no spreadsheet to refresh.</p>
+  </div>
+</div>
+
+<div class="stack">
+  {% for gc in game_cards %}
+  <section class="panel">
+    <div class="panel-head">
+      <h2>{{ gc.game.name }}</h2>
+      <span class="pill">{{ gc.totals.quantity|default:0 }} copies</span>
+      <span class="pill">{{ gc.owned_rows }} cards</span>
+      {% if gc.reserved %}<span class="pill accent">{{ gc.reserved }} reserved</span>{% endif %}
+      {% if gc.packages %}<span class="pill gold">{{ gc.packages }} package{{ gc.packages|pluralize }}</span>{% endif %}
+    </div>
+
+    <div class="panel-body stack">
+      <div class="stat-grid">
+        <div class="stat">
+          <div class="stat-label">Worth · trend</div>
+          <div class="stat-value money">{{ gc.totals.total_trend|euro }}</div>
+          <div class="stat-sub">the number to quote a buyer</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Lowest listed</div>
+          <div class="stat-value">{{ gc.totals.total_from|euro }}</div>
+          <div class="stat-sub">if everything sold at the floor</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">30-day average</div>
+          <div class="stat-value">{{ gc.totals.total_30d|euro }}</div>
+          <div class="stat-sub">smooths a spiky market</div>
+        </div>
+      </div>
+
+      {% if gc.highlights %}
+      <div>
+        <div class="stat-label mb">Most valuable</div>
+        <div class="gallery">
+          {% for p in gc.highlights %}
+          <a class="tile" href="{% url 'card-detail' game=gc.game.code pk=p.pk %}"
+             title="{{ p.display_name }}">
+            {% include "catalog/partials/card_art.html" with printing=p size="small" %}
+            <div class="tile-price">{{ p.current_price_trend|euro }}</div>
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="panel-foot">
+      <a href="{% url 'expansion-list' game=gc.game.code %}" class="btn btn-sm">Sets</a>
+      <a href="{% url 'card-list' game=gc.game.code %}" class="btn btn-sm">Browse cards</a>
+      <a href="{% url 'package-list' game=gc.game.code %}" class="btn btn-sm">Packages</a>
+      {# hx-boost would fetch these via ajax and drop the file — opt out. #}
+      <a href="{% url 'export-xlsx' game=gc.game.code %}" class="btn btn-sm btn-ghost"
+         hx-boost="false" download>XLSX</a>
+      <a href="{% url 'export-csv' game=gc.game.code %}" class="btn btn-sm btn-ghost"
+         hx-boost="false" download>CSV</a>
+    </div>
+  </section>
+  {% empty %}
+  <div class="panel">
+    <div class="empty">
+      <div class="empty-icon" aria-hidden="true">◫</div>
+      <p>No games imported yet.</p>
+      <p class="muted small">Run <code>manage.py import_legacy</code> to load the JSON ledgers.</p>
+    </div>
+  </div>
+  {% endfor %}
+
+  <section class="panel">
+    <div class="panel-head"><h2>Recent quantity changes</h2></div>
+    {% if recent_changes %}
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>When</th><th colspan="2">Card</th><th class="num">Change</th><th>Reason</th><th>By</th></tr>
+        </thead>
+        <tbody>
+          {% for c in recent_changes %}
+          <tr>
+            <td class="small muted">{{ c.created_at|date:"Y-m-d H:i" }}</td>
+            <td style="width:44px">
+              {% if c.card.piece_id %}
+              <img class="thumb" src="{% url 'card-art' piece_id=c.card.piece_id size='small' %}"
+                   alt="" loading="lazy" decoding="async">
+              {% endif %}
+            </td>
+            <td>
+              <a href="{% url 'card-detail' game=c.card.expansion.game.code pk=c.card.pk %}">{{ c.card.display_name }}</a>
+              <div class="meta faint small">{{ c.card.expansion.display_name }}</div>
+            </td>
+            <td class="num">
+              {{ c.old_quantity }} → <strong>{{ c.new_quantity }}</strong>
+            </td>
+            <td><span class="pill">{{ c.get_reason_display }}</span></td>
+            <td class="small muted">{{ c.user|default:"—" }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div class="empty"><p>No changes recorded yet.</p></div>
+    {% endif %}
+  </section>
+
+  <p class="faint small">
+    {% if last_backup %}Last backup: {{ last_backup }} · {{ backup_count }} retained
+    {% else %}⚠ No database backups yet — run <code>manage.py backup_db</code>{% endif %}
+  </p>
+</div>
+{% endblock %}

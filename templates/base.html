@@ -1,0 +1,110 @@
+{% load static %}<!doctype html>
+<html lang="en" data-theme="{{ request.COOKIES.theme|default:'dark' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Cardvault{% endblock %}</title>
+  <link rel="icon" href="{% static 'card-placeholder.svg' %}">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+        href="{% static 'fonts/schibsted-grotesk-latin.woff2' %}">
+  <link rel="stylesheet" href="{% static 'fonts.css' %}">
+  <link rel="stylesheet" href="{% static 'app.css' %}">
+  <script src="{% static 'htmx.min.js' %}" defer></script>
+  <script src="{% static 'app.js' %}" defer></script>
+</head>
+<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-boost="true">
+{% if user.is_authenticated %}
+<div class="app" id="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <a href="{% url 'dashboard' %}" class="brand">
+      <span class="brand-mark" aria-hidden="true">CV</span> Cardvault
+    </a>
+
+    <nav class="nav-group">
+      <a href="{% url 'dashboard' %}" class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+        <span class="ico" aria-hidden="true">◈</span> Dashboard
+      </a>
+    </nav>
+
+    {% for g in nav_games %}
+    <nav class="nav-group">
+      <span class="nav-label">{{ g.name }}</span>
+      <a href="{% url 'expansion-list' game=g.code %}"
+         class="nav-link {% if request.resolver_match.kwargs.game == g.code and request.resolver_match.url_name in 'expansion-list,expansion-detail' %}active{% endif %}">
+        <span class="ico" aria-hidden="true">▤</span> Sets
+      </a>
+      <a href="{% url 'card-list' game=g.code %}"
+         class="nav-link {% if request.resolver_match.kwargs.game == g.code and request.resolver_match.url_name in 'card-list,card-detail' %}active{% endif %}">
+        <span class="ico" aria-hidden="true">◫</span> Cards
+      </a>
+      <a href="{% url 'package-list' game=g.code %}"
+         class="nav-link {% if request.resolver_match.kwargs.game == g.code and 'package' in request.resolver_match.url_name %}active{% endif %}">
+        <span class="ico" aria-hidden="true">◰</span> Packages
+      </a>
+      <div class="row" style="gap:.3rem;padding:.25rem .6rem .1rem">
+        {# hx-boost would fetch these via ajax and drop the file — opt out. #}
+        <a href="{% url 'export-xlsx' game=g.code %}" class="btn btn-sm btn-ghost"
+           hx-boost="false" download title="Download {{ g.name }} as XLSX">XLSX</a>
+        <a href="{% url 'export-csv' game=g.code %}" class="btn btn-sm btn-ghost"
+           hx-boost="false" download title="Download {{ g.name }} as CSV">CSV</a>
+      </div>
+    </nav>
+    {% endfor %}
+
+    {% if user.is_staff %}
+    <nav class="nav-group">
+      <span class="nav-label">Admin</span>
+      <a href="{% url 'scrape-panel' %}"
+         class="nav-link {% if 'scrape' in request.resolver_match.url_name %}active{% endif %}">
+        <span class="ico" aria-hidden="true">⟳</span> Data jobs
+      </a>
+      {% comment %}The admin is a different app with its own <head>. hx-boost swaps only
+         the body, so a boosted click leaves the admin's stylesheets unloaded
+         until you hit refresh — opt out and do a real navigation.{% endcomment %}
+      <a href="{% url 'admin:index' %}" class="nav-link" hx-boost="false">
+        <span class="ico" aria-hidden="true">⚙</span> Records
+      </a>
+    </nav>
+    {% endif %}
+
+    <div class="sidebar-foot">
+      <button type="button" class="btn btn-sm btn-ghost" data-theme-toggle>
+        <span class="ico" aria-hidden="true">◐</span> <span data-theme-label>Light mode</span>
+      </button>
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-sm btn-ghost btn-block">Log out {{ user }}</button>
+      </form>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button type="button" class="btn btn-icon btn-ghost nav-toggle" data-nav-toggle
+              aria-label="Toggle navigation">☰</button>
+      <button type="button" class="btn btn-sm" id="quick-add-btn"
+              hx-get="{% url 'quick-add' %}" hx-target="#modal" hx-swap="innerHTML"
+              title="Quick add — press /">
+        <span aria-hidden="true">+</span> Quick add <kbd class="faint">/</kbd>
+      </button>
+      <span class="spacer"></span>
+      {% block topbar %}{% endblock %}
+    </header>
+
+    <main class="page">
+      {% if messages %}
+        {% for message in messages %}
+          <div class="notice {{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+</div>
+{% else %}
+  {% block anon_content %}{% endblock %}
+{% endif %}
+<div id="modal"></div>
+<div id="toasts" aria-live="polite"></div>
+</body>
+</html>

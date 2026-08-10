@@ -1,0 +1,209 @@
+/* Cardvault theme for the Django admin.
+
+   Django's admin exposes its whole palette as CSS custom properties, so this
+   re-skins it by redefining those rather than fighting its selectors. Same
+   tokens, same fonts as the app, so moving between them doesn't feel like
+   changing products. */
+
+@import url('fonts.css');
+
+:root,
+html[data-theme="dark"] {
+  --primary: #7c6cff;
+  --primary-fg: #ffffff;
+  --secondary: #6558e0;
+  --accent: #f0b429;
+
+  --body-fg: #e8ecf5;
+  --body-bg: #0d0f14;
+  --body-quiet-color: #9aa5bd;
+  --body-loud-color: #ffffff;
+
+  --header-color: #e8ecf5;
+  --header-branding-color: #ffffff;
+  --header-bg: #151922;
+  --header-link-color: #e8ecf5;
+
+  --breadcrumbs-fg: #9aa5bd;
+  --breadcrumbs-link-fg: #e8ecf5;
+  --breadcrumbs-bg: #1c2130;
+
+  --link-fg: #9184ff;
+  --link-hover-color: #b4abff;
+  --link-selected-fg: #7c6cff;
+
+  --hairline-color: #2a3145;
+  --border-color: #2a3145;
+
+  --error-fg: #f87171;
+  --message-success-bg: rgba(52, 211, 153, .16);
+  --message-warning-bg: rgba(251, 191, 36, .16);
+  --message-error-bg: rgba(248, 113, 113, .16);
+
+  --darkened-bg: #151922;
+  --selected-bg: #1c2130;
+  --selected-row: rgba(124, 108, 255, .16);
+
+  --button-fg: #ffffff;
+  --button-bg: #7c6cff;
+  --button-hover-bg: #9184ff;
+  --default-button-bg: #7c6cff;
+  --default-button-hover-bg: #9184ff;
+  --close-button-bg: #2a3145;
+  --close-button-hover-bg: #3a4460;
+  --delete-button-bg: #c92c2c;
+  --delete-button-hover-bg: #e04141;
+
+  --object-tools-fg: #ffffff;
+  --object-tools-bg: #3a4460;
+  --object-tools-hover-bg: #4c5878;
+
+  --font-family-primary: 'Schibsted Grotesk', system-ui, -apple-system, sans-serif;
+  --font-family-monospace: ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+/* Light mode: Django flips these itself; keep our hues rather than its blues. */
+@media (prefers-color-scheme: light) {
+  html[data-theme="auto"], html:not([data-theme]) {
+    --primary: #5b4bd6;
+    --secondary: #4a3bc4;
+    --body-bg: #f6f7fb;
+    --body-fg: #171a22;
+    --header-bg: #ffffff;
+    --header-color: #171a22;
+    --header-branding-color: #5b4bd6;
+    --header-link-color: #171a22;
+    --breadcrumbs-bg: #f1f3f9;
+    --breadcrumbs-fg: #5a6379;
+    --breadcrumbs-link-fg: #171a22;
+    --link-fg: #5b4bd6;
+    --hairline-color: #dfe3ee;
+    --border-color: #dfe3ee;
+    --darkened-bg: #f1f3f9;
+    --selected-row: rgba(91, 75, 214, .10);
+    --button-bg: #5b4bd6;
+    --default-button-bg: #5b4bd6;
+  }
+}
+
+/* --- shape: Django's admin is very square; soften it to match the app --- */
+
+body { font-size: 14px; }
+
+#header {
+  border-bottom: 1px solid var(--border-color);
+  padding: 12px 24px;
+}
+#branding h1 {
+  font-family: 'Bricolage Grotesque', var(--font-family-primary);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+#branding h1 a:link, #branding h1 a:visited { color: var(--header-branding-color); }
+
+.module, .dashboard #content .module, #content-related .module {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--darkened-bg);
+}
+.module caption, .module h2 {
+  font-family: 'Bricolage Grotesque', var(--font-family-primary);
+  letter-spacing: -0.01em;
+  border-radius: 0;
+}
+
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+  border-radius: 6px;
+  font-weight: 600;
+  padding: 8px 14px;
+}
+input[type=text], input[type=password], input[type=email], input[type=url],
+input[type=number], textarea, select, .vTextField {
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background: var(--body-bg);
+  color: var(--body-fg);
+  padding: 7px 9px;
+}
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(124, 108, 255, .18);
+}
+
+#changelist-filter { border-radius: 12px; }
+table thead th { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; }
+td, th { font-variant-numeric: tabular-nums; }
+
+.object-tools a { border-radius: 999px; font-weight: 600; }
+.paginator { border-radius: 0 0 12px 12px; }
+
+/* A way back to the app — the admin is a side door, not the front one. */
+#user-tools a.app-link {
+  border: 1px solid var(--primary);
+  border-radius: 999px;
+  padding: 3px 12px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* ---------------------------------------------------------------- polish ---
+   Django's admin is functional but dated: hard corners, dense rules, tiny
+   targets. These bring it closer to the app without fighting its structure. */
+
+#site-name a { display: inline-flex; align-items: center; gap: .5rem; }
+#site-name em { font-style: normal; font-weight: 400; color: var(--body-quiet-color); }
+.brand-dot {
+  width: 22px; height: 22px; border-radius: 6px;
+  background: linear-gradient(140deg, var(--primary), var(--accent));
+  display: inline-block;
+}
+
+#content { padding: 24px 28px; }
+#content h1 { font-family: 'Bricolage Grotesque', var(--font-family-primary);
+              letter-spacing: -.02em; margin-bottom: 4px; }
+/* Do NOT lay out #content: it holds <h1>, #content-main AND #content-related,
+   and Django positions them itself via .colMS. Overriding it auto-placed the
+   three into grid cells and scattered the page.
+   Only #content-main is safe to arrange — every child of it is a .module. */
+.dashboard #content-main {
+  display: grid; gap: 18px; align-items: start; min-width: 0;
+  grid-template-columns: repeat(auto-fill, minmax(min(330px, 100%), 1fr));
+}
+.dashboard #content-main .module { margin-bottom: 0; }
+
+/* app cards */
+.dashboard .module { margin-bottom: 18px; box-shadow: 0 1px 2px rgba(0,0,0,.18); }
+.dashboard .module caption, .module h2 {
+  padding: 11px 16px; font-size: 12px; letter-spacing: .09em; text-transform: uppercase;
+  background: transparent; border-bottom: 1px solid var(--border-color);
+  color: var(--body-quiet-color);
+}
+.dashboard .module table th, .dashboard .module table td { padding: 10px 16px; }
+.dashboard .module table tr:not(:last-child) th,
+.dashboard .module table tr:not(:last-child) td { border-bottom: 1px solid var(--hairline-color); }
+.dashboard .module table a { font-weight: 600; }
+.dashboard .module table tr:hover { background: var(--selected-bg); }
+.addlink, .changelink, .viewlink { font-weight: 500; }
+
+/* changelist */
+#changelist .results { border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); }
+#changelist table thead th { background: var(--darkened-bg); }
+#changelist-filter { background: var(--darkened-bg); border: 1px solid var(--border-color); }
+#changelist-filter h2 { border-radius: 12px 12px 0 0; }
+#toolbar { border-radius: 10px; padding: 10px; background: var(--darkened-bg);
+           border: 1px solid var(--border-color); }
+#toolbar form#changelist-search input[type=submit] { border-radius: 6px; }
+
+/* forms */
+.aligned label { font-weight: 600; color: var(--body-quiet-color); }
+fieldset.module { padding-bottom: 6px; }
+.submit-row { border-radius: 12px; border: 1px solid var(--border-color);
+              background: var(--darkened-bg); padding: 12px 16px; }
+.help, .helptext { color: var(--body-quiet-color); font-size: 12px; }
+
+/* recent actions rail */
+#recent-actions-module ul.actionlist { padding: 4px 0; }
+#recent-actions-module .actionlist li { padding: 8px 16px; border-bottom: 1px solid var(--hairline-color); }
+#recent-actions-module .actionlist li:last-child { border-bottom: 0; }

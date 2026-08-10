@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}Job #{{ job.pk }} — Cardvault{% endblock %}
+{% block content %}
+<nav class="breadcrumb" aria-label="breadcrumb">
+  <a href="{% url 'scrape-panel' %}">Data jobs</a>
+  <span class="sep">/</span>
+  <span>Job #{{ job.pk }}</span>
+</nav>
+
+<div class="page-head">
+  <div class="titles">
+    <h1>#{{ job.pk }} {{ job.get_job_type_display }}</h1>
+    {% if job.params.retry_of %}
+    <p class="subtitle">
+      Retry of <a href="{% url 'scrape-job-detail' pk=job.params.retry_of %}">job
+      #{{ job.params.retry_of }}</a> — only the items that failed there.
+    </p>
+    {% endif %}
+    <p class="subtitle">
+      {{ job.game.name }} · created {{ job.created_at|date:"Y-m-d H:i" }}
+      by {{ job.created_by|default:"—" }} · <code>{{ job.params }}</code>
+    </p>
+  </div>
+</div>
+
+<div id="job-progress"
+     {% if not is_terminal %}
+     hx-get="{% url 'scrape-job-progress' pk=job.pk %}" hx-trigger="every 3s" hx-swap="innerHTML"
+     {% endif %}>
+  {% include "scraping/partials/job_progress.html" %}
+</div>
+
+{% if job.error %}
+<section class="panel mt">
+  <div class="panel-head"><h2 class="err">Why it stopped</h2></div>
+  <div class="panel-body"><pre class="log">{{ job.error }}</pre></div>
+</section>
+{% endif %}
+
+{% if failed_items %}
+<div class="page-head mt">
+  <div class="titles">
+    <h2>Failed items</h2>
+    <p class="subtitle">
+      {{ job.failed_items }} item{{ job.failed_items|pluralize }} went wrong. Retrying starts a
+      fresh job over just these — often all it takes, since most failures are a timeout or a
+      page that didn't load.
+    </p>
+  </div>
+  {% if can_retry %}
+  <div class="actions">
+    <form method="post" action="{% url 'scrape-job-retry-failed' pk=job.pk %}">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-primary">Retry {{ job.failed_items }} failed item{{ job.failed_items|pluralize }}</button>
+    </form>
+  </div>
+  {% endif %}
+</div>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Item</th><th>Message</th><th>At</th></tr></thead>
+  <tbody>
+    {% for item in failed_items %}
+    <tr>
+      <td>{% if item.card %}{{ item.card.slug }}{% else %}{{ item.expansion.slug }}{% endif %}</td>
+      <td><small>{{ item.message }}</small></td>
+      <td>{{ item.processed_at|date:"H:i:s" }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endif %}
+{% endblock %}
